@@ -1,0 +1,49 @@
+.header {
+    background-color: lightslategray;
+    width: 100%;
+    height: 125%;
+    overflow: auto;
+    
+    /*display: flex;
+    flex-direction: column;*/
+}
+
+.wmgtss {
+    color: blue;
+    font-size: xx-large;
+    position: fixed;
+    top: 20px;
+}
+
+.wmg-logo {
+    margin-left: 200px;
+    height: 90px;
+    width: 200px;
+}
+
+.modules-button {
+    background-color: lightgray;
+    position: fixed;
+    top: 35px;
+    left: 750px;
+    height: 60px;
+    width: 190px;
+}
+
+.boards-button {
+    background-color: lightgray;
+    position: fixed;
+    top: 35px;
+    left: 1000px;
+    height: 60px;
+    width: 190px;
+}
+
+.sign-out-button {
+    background-color: lightgray;
+    position: fixed;
+    top: 35px;
+    left: 1600px;
+    height: 60px;
+    width: 190px;
+}
