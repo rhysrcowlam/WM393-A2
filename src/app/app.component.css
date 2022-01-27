@@ -1,4 +1,6 @@
-.main-content {
-    position: fixed;
-    top: 110px;
+.display-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }

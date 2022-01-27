@@ -35,21 +35,22 @@
     display: flex;
     flex-direction: column;
     padding: 0px;
-    gap: 15px;
+    gap: 10px;
   }
 
 .bookmark-options-container {
     position: fixed;
-    bottom: 47px;
+    bottom: 50px;
     left: 300px;
     display: flex;
     flex-direction: column;
     padding: 0px;
-    gap: 15px;
+    gap: 10px;
 }
 
 .buttons-style {
     border: none;
     background-color: rgb(1, 1, 49);
     color: cyan;
+    height: 25px;
 }
