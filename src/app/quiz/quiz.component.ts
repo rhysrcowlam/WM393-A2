@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
-import { Router } from '@angular/router';
+import { AbstractQuizService } from './quiz.abstract.service';
 import { SenderService } from '../sender.service';
 
 /**
@@ -8,20 +8,26 @@ import { SenderService } from '../sender.service';
  */
 
 @Component({
-  selector: 'app-sdlc-quiz1',
-  templateUrl: './sdlc-quiz1.component.html',
-  styleUrls: ['./sdlc-quiz1.component.css']
+  selector: 'app-quiz',
+  templateUrl: './quiz.component.html',
+  styleUrls: ['./quiz.component.css']
 })
 
-export class SdlcQuiz1Component {
-  constructor(
-    private router: Router,
-    private service: SenderService
-  ) { }
-
+export class QuizComponent implements OnInit{
   public displayResults: boolean = false
+  public studentsMark = 0
+
+  constructor(
+    public quizService: AbstractQuizService
+  ) { }
   
-  studentsMark = 0
+  ngOnInit() {
+      this.quizService.getQuizQuestions('1').subscribe(quizQuestions =>{
+        console.log(quizQuestions)
+      })
+  }
+
+  
 
   studentsAnswerQ1: string = ''
 
@@ -97,10 +103,9 @@ export class SdlcQuiz1Component {
     return this.studentsMark
   }
 
-  submitQuiz (event: any) {
+  public submitQuiz() {
     this.markAnswers()
-    this.service.variable1 = this.studentsMark.toString()
+    // this.service.variable1 = this.studentsMark.toString()
     this.displayResults = true
-    console.log("test")
   }
 }

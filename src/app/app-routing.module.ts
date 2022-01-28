@@ -3,11 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { QuizResultsComponent } from './quiz-results/quiz-results.component';
-import { SdlcQuiz1Component } from './sdlc-quiz1/sdlc-quiz1.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 const appRoutes: Routes = [
   { path: 'HomePage', component: HomePageComponent },
-  { path: 'sdlcQuiz1', component: SdlcQuiz1Component },
+  { path: 'Quiz', component: QuizComponent },
   { path: 'QuizResults', component: QuizResultsComponent},
 ];
 

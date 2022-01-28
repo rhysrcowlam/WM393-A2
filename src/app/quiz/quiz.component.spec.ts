@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SdlcQuiz1Component } from './sdlc-quiz1.component';
+import { QuizComponent } from './quiz.component';
 
-describe('SdlcQuiz1Component', () => {
-  let component: SdlcQuiz1Component;
-  let fixture: ComponentFixture<SdlcQuiz1Component>;
+describe('QuizComponent', () => {
+  let component: QuizComponent;
+  let fixture: ComponentFixture<QuizComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SdlcQuiz1Component ]
+      declarations: [ QuizComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SdlcQuiz1Component);
+    fixture = TestBed.createComponent(QuizComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
