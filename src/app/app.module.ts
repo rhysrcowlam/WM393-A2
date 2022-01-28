@@ -9,6 +9,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { SdlcQuiz1Component } from './sdlc-quiz1/sdlc-quiz1.component';
+import { QuizResultsComponent } from './quiz-results/quiz-results.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { SdlcQuiz1Component } from './sdlc-quiz1/sdlc-quiz1.component';
     FooterComponent,
     HomePageComponent,
     SdlcQuiz1Component,
+    QuizResultsComponent,
   ],
   imports: [
     BrowserModule,

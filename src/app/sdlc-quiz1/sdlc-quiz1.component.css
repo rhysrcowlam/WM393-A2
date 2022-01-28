@@ -1,0 +1,47 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.header {
+    text-align: center;
+    font-style: bold;
+    font-size: 35px;
+    margin-top: 10px;
+}
+
+.questions {
+    font-style: bold;
+    font-size: 20px;
+}
+
+.radio-groups {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    align-items: flex-start;
+    background-color: lightgray;
+}
+  
+  .radio-button-style {
+    margin: 5px;
+    font-size: 15px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    margin-left: 10px;
+    gap: 1500px
+}
+
+.button-style {
+    border: none;
+    background-color: rgb(89, 206, 245);
+    color: white;
+    height: 40px;
+    width: 150px;
+}

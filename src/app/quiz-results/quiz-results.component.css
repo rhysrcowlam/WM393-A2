@@ -1,0 +1,37 @@
+.page-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.header {
+    text-align: center;
+    font-style: bold;
+    font-size: 35px;
+    margin-top: 10px;
+}
+
+.test {
+    text-align: center;
+    font-style: bold;
+    font-size: 35px;
+    margin-top: 50px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+    margin-left: 10px;
+    gap: 1445px
+}
+
+.button-style {
+    border: none;
+    background-color: rgb(89, 206, 245);
+    color: white;
+    height: 40px;
+    width: 180px;
+    align-self: flex-end;
+}
