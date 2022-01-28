@@ -19,6 +19,8 @@ export class SdlcQuiz1Component {
     private service: SenderService
   ) { }
 
+  public displayResults: boolean = false
+  
   studentsMark = 0
 
   studentsAnswerQ1: string = ''
@@ -95,9 +97,10 @@ export class SdlcQuiz1Component {
     return this.studentsMark
   }
 
-  submitQuiz () {
+  submitQuiz (event: any) {
     this.markAnswers()
     this.service.variable1 = this.studentsMark.toString()
-    this.router.navigate(["/QuizResults"])
+    this.displayResults = true
+    console.log("test")
   }
 }

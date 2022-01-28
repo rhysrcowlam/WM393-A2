@@ -33,16 +33,16 @@
         </mat-radio-group>
     </div>
     <div class="button-container">
-        <a routerLink="/HomePage" routerLinkActive="active">
-            <button mat-flat-button aria-label="Exit Quiz" class="button-style">
-                Exit Quiz
-            </button>
-        </a>
-        <a routerLink="/QuizResults" routerLinkActive="active">
-            <button mat-flat-button aria-label="Submit" class="button-style" (click)="submitQuiz()">
-                Submit
-            </button>
-        </a>
+        <button mat-flat-button aria-label="Exit Quiz" class="button-style">
+            Exit Quiz
+        </button>
+        <button mat-flat-button aria-label="Submit" class="button-style" (click)="submitQuiz($event)">
+            Submit
+        </button>
+    </div>
+    <div *ngIf="displayResults">
+        <app-quiz-results></app-quiz-results>
+
     </div>
 </div>
 
