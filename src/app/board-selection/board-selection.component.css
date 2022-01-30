@@ -24,8 +24,8 @@ mat-grid-tile {
     bottom: 40%;
     display: flex;
     flex-direction: row;
-    margin-left: 17%;
-    gap: 650px
+    margin-left: 105px;
+    gap: 220px
 }
 
 .button-style {
@@ -33,5 +33,5 @@ mat-grid-tile {
     background-color: rgb(89, 206, 245);
     color: white;
     height: 40px;
-    width: 300px;
+    width: 150px;
 }

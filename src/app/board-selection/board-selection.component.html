@@ -1,0 +1,40 @@
+<div class="page-container">
+    <div>
+        <mat-grid-list cols="5" rowHeight="2:2" class="grid-container">
+            <mat-grid-tile>
+                <img src="Quiz.png" class="logo">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <img src="Resources.png" class="logo">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <img src="Q&A.png" class="logo">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <img src="Discussions.png" class="logo">
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <img src="Feedback.png" class="logo">
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+    <div class="button-container">
+        <a routerLink="/QuizSelection" routerLinkActive="active">
+            <button mat-flat-button aria-label="quizBoard" class="button-style">
+                Quiz
+            </button>
+        </a>
+        <button mat-flat-button aria-label="resourceBoard" class="button-style">
+            Resources
+        </button>
+        <button mat-flat-button aria-label="q&aBoard" class="button-style">
+            Q and A
+        </button>
+        <button mat-flat-button aria-label="discussionsBoard" class="button-style">
+            Discussions
+        </button>
+        <button mat-flat-button aria-label="feedbackBoard" class="button-style">
+            Feedback
+        </button>
+    </div>
+</div>

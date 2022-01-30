@@ -11,5 +11,4 @@ export class ModuleSelectionComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

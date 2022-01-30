@@ -1,16 +1,20 @@
-<mat-toolbar class="header"> 
+<mat-toolbar class="header">
     <span class="wmgtss">WMGTSS</span>
     <img src="/assets/WMG.png" class="wmg-logo">
-    
+
     <div class="resource-container">
-        <button mat-flat-button aria-label="Back to modules button" class="buttons-style">
-            Back to modules
-        </button>
-        <button mat-flat-button aria-label="Back to boards button" class="buttons-style">
-            Back to boards
-        </button>
+        <a routerLink="/ModuleSelection" routerLinkActive="active">
+            <button mat-flat-button aria-label="Back to modules button" class="buttons-style">
+                Back to modules
+            </button>
+        </a>
+        <a routerLink="/BoardSelection" routerLinkActive="active">
+            <button mat-flat-button aria-label="Back to boards button" class="buttons-style">
+                Back to boards
+            </button>
+        </a>
     </div>
-    
+
     <div>
         <!--<span *ngIf="studentSignedIn"> Student ID: </span>-->
         <button mat-flat-button aria-label="Sign out button" class="sign-out-button">

@@ -1,22 +1,25 @@
-<div class="quiz-button-container">
-    <a routerLink="/Quiz" routerLinkActive="active">
-        <button mat-flat-button aria-label="SDLC Quiz 1" class="buttons-style">
-            Software Development Life Cycle Quiz 1
-        </button>
-    </a>
-    <button mat-flat-button aria-label="SDLC Quiz 2" class="buttons-style">
-        Software Development Life Cycle Quiz 2
-    </button>
-    <button mat-flat-button aria-label="SDLC Quiz 3" class="buttons-style">
-        Software Development Life Cycle Quiz 3
-    </button>
-    <button mat-flat-button aria-label="SDLC Quiz 4" class="buttons-style">
-        Software Development Life Cycle Quiz 4
-    </button>
-</div>
-<div class="quiz-status-container">
-    <span class="text-style">Not Started</span>
-    <span class="text-style">Not Started</span>
-    <span class="text-style">Not Started</span>
-    <span class="text-style">Not Started</span>
+<div class="page-container">
+    <h1 class="header">User Login</h1>
+    <form [formGroup]="loginForm" class="form-container">
+        <mat-form-field>
+            <input matInput placeholder="Email Address" formControlName="email" />
+            <mat-error *ngIf="email?.errors?.['required']">
+                Email required
+            </mat-error>
+            <mat-error *ngIf="email?.errors?.['email']">
+                Please enter a valid email
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Password" formControlName="password" type="password" />
+            <mat-error *ngIf="email?.errors?.['required']">
+                Password is required
+            </mat-error>
+        </mat-form-field>
+        <div class="center margin-top">
+            <button mat-flat-button aria-label="Login" type="submit" class="button-style">
+                Login
+            </button>
+        </div>
+    </form>
 </div>
