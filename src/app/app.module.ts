@@ -12,6 +12,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HomePageComponent } from './home/home-page/home-page.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { QuizResultsComponent } from './quiz-results/quiz-results.component';
+import { DisplayQuestionComponent } from './quiz/display-question/display-question.component';
+import { QuizSelectionComponent } from './quiz-selection/quiz-selection.component';
+import { ModuleSelectionComponent } from './module-selection/module-selection.component';
 
 
 @NgModule({
@@ -22,6 +25,9 @@ import { QuizResultsComponent } from './quiz-results/quiz-results.component';
     HomePageComponent,
     QuizComponent,
     QuizResultsComponent,
+    DisplayQuestionComponent,
+    QuizSelectionComponent,
+    ModuleSelectionComponent,
   ],
   imports: [
     BrowserModule,
