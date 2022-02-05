@@ -5,6 +5,18 @@
     height: 100%;
 }
 
+.module-button-container {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-45%, -45%);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
 .quiz-button-container {
     position: absolute;
     left:50%;

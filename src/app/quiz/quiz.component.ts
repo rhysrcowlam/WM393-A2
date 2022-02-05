@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatRadioChange } from '@angular/material/radio';
 import { AbstractQuizService } from './quiz.abstract.service';
-import { SenderService } from '../sender.service';
+import { QuizQuestion } from './quiz.interface';
 
 /**
  * @title Radios with ngModel
@@ -14,8 +13,12 @@ import { SenderService } from '../sender.service';
 })
 
 export class QuizComponent implements OnInit{
+
   public displayResults: boolean = false
-  public studentsMark = 0
+  public quizQuestions: QuizQuestion[] = []
+  public studentsAnswers = new Map<string, number>()
+  public correctAnswerList = new Map<string, number>()
+  public studentsMark: number = 0
 
   constructor(
     public quizService: AbstractQuizService
@@ -23,89 +26,34 @@ export class QuizComponent implements OnInit{
   
   ngOnInit() {
       this.quizService.getQuizQuestions('1').subscribe(quizQuestions =>{
-        console.log(quizQuestions)
+        this.quizQuestions = quizQuestions
       })
   }
 
-  
-
-  studentsAnswerQ1: string = ''
-
-  Q1: string[] = ['The set of instructions telling a computer how to work.',
-  'A program that tells a computer what to do.',
-  'A group of programs performing a specific task.',
-  'A collection of programs coordinating with the hardware to run the machine for any purpose.'
-  ];
-
-  Q1correctAnswer: string = 'A collection of programs coordinating with the hardware to run the machine for any purpose.'
-
-  studentsAnswerQ2: string = ''
-
-  Q2: string[] = ['Stand-alone software',
-  'Interactive transaction-based software',
-  'Embedded control software',
-  'Batch processing software',
-  'Assignment marking software',
-  ];
-
-  Q2correctAnswer: string = 'Assignment marking software'
-
-  studentsAnswerQ3: string = ''
-
-  Q3: string[] = ['Maintainable',
-  'Efficient',
-  'Dependable',
-  'Unacceptable',
-  ];
-
-  Q3correctAnswer: string = 'Unacceptable'
-
-  studentsAnswerQ4: string = ''
-
-  Q4: string[] = ['Scales',
-  'WebCraft',
-  'C++',
-  'RGBKeyboard',
-  ];
-
-  Q4correctAnswer: string = 'C++'
-
-  Q1AnswerChangedHandler (event: MatRadioChange) {
-      this.studentsAnswerQ1 = event.value
+  public handleAnswer(selectedAnswer: number, questionId: string, correctAnswer: number) {
+    this.studentsAnswers.set(questionId, selectedAnswer)
+    this.correctAnswerList.set(questionId, correctAnswer)
   }
 
-  Q2AnswerChangedHandler (event: MatRadioChange) {
-    this.studentsAnswerQ2 = event.value
-  }
 
-  Q3AnswerChangedHandler (event: MatRadioChange) {
-    this.studentsAnswerQ3= event.value
-  }
-
-  Q4AnswerChangedHandler (event: MatRadioChange) {
-    this.studentsAnswerQ4 = event.value
-  }
-
-  markAnswers () {
-
-    if (this.studentsAnswerQ1 == this.Q1correctAnswer) {
-      this.studentsMark += 1
-    }
-    if (this.studentsAnswerQ2 == this.Q2correctAnswer) {
-      this.studentsMark += 1
-    }
-    if (this.studentsAnswerQ3 == this.Q3correctAnswer) {
-      this.studentsMark += 1
-    }
-    if (this.studentsAnswerQ4 == this.Q4correctAnswer) {
-      this.studentsMark += 1
-    }
-    return this.studentsMark
-  }
-
-  public submitQuiz() {
-    this.markAnswers()
-    // this.service.variable1 = this.studentsMark.toString()
+  submitQuiz() {
     this.displayResults = true
+    
+    console.log(this.studentsAnswers)
+    console.log(this.correctAnswerList)
+    console.log(this.quizQuestions)
+
+    if (this.studentsAnswers.get("1") == this.correctAnswerList.get("1")) {
+      this.studentsMark = this.studentsMark + 1
+    }
+    if (this.studentsAnswers.get("2") == this.correctAnswerList.get("2")) {
+      this.studentsMark = this.studentsMark + 1
+    }
+    if (this.studentsAnswers.get("3") == this.correctAnswerList.get("3")) {
+      this.studentsMark = this.studentsMark + 1
+    }
+    if (this.studentsAnswers.get("4") == this.correctAnswerList.get("4")) {
+      this.studentsMark = this.studentsMark + 1
+    }
   }
 }

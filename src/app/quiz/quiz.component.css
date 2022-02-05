@@ -12,24 +12,6 @@
     margin-top: 10px;
 }
 
-.questions {
-    font-style: bold;
-    font-size: 20px;
-}
-
-.radio-groups {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    align-items: flex-start;
-    background-color: lightgray;
-}
-  
-  .radio-button-style {
-    margin: 5px;
-    font-size: 15px;
-}
-
 .button-container {
     display: flex;
     flex-direction: row;

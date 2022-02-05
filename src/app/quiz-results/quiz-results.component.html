@@ -1,6 +1,7 @@
 <div class="page-container">
-    <h1 class="header">Post Lecture Quiz Results</h1>
-    <div class="test">
-        <span [innerHtml]="test"></span>
+    <div>
+        <label class="questions">{{question.question}}</label>
+        <p class="answer-groups">{{question.answers[question.correctAnswer]}}</p>
+        <p class="answer-groups">{{displayAnswers()}}</p>
     </div>
 </div>

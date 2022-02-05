@@ -12,26 +12,15 @@
     margin-top: 10px;
 }
 
-.test {
-    text-align: center;
-    font-style: bold;
-    font-size: 35px;
-    margin-top: 50px;
-}
-
-.button-container {
+.answer-groups {
     display: flex;
-    flex-direction: row;
-    margin-top: 15px;
-    margin-left: 10px;
-    gap: 1445px
+    flex-direction: column;
+    margin: 5px;
+    align-items: flex-start;
+    background-color: greenyellow;
 }
 
-.button-style {
-    border: none;
-    background-color: rgb(89, 206, 245);
-    color: white;
-    height: 40px;
-    width: 180px;
-    align-self: flex-end;
+.radio-button-style {
+    margin: 5px;
+    font-size: 15px;
 }

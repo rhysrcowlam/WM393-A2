@@ -1,0 +1,9 @@
+<div>
+    <label class="questions">{{question.question}}</label>
+    <mat-radio-group class="radio-groups">
+        <mat-radio-button color="primary" class="radio-button-style" *ngFor="let answer of question.answers"
+            [value]="answer" (change)="changeHandler(answer)">
+            {{answer}}
+        </mat-radio-button>
+    </mat-radio-group>
+</div>
