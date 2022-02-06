@@ -6,26 +6,28 @@
 }
 
 .grid-container {
-    top: 40%;
+    top: 50%;
 }
 
 .logo {
-    margin-left: 200px;
-    height: 90px;
+    height: 140px;
     width: 200px;
 }
 
-mat-grid-tile {
-    background: lightblue; /*take out when page is finished*/
+.sdlc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    margin-left: 20%;
 }
 
-.button-container {
-    position: absolute;
-    bottom: 40%;
+.mi-container {
     display: flex;
-    flex-direction: row;
-    margin-left: 17%;
-    gap: 650px
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    margin-right: 20%;
 }
 
 .button-style {
@@ -33,5 +35,5 @@ mat-grid-tile {
     background-color: rgb(89, 206, 245);
     color: white;
     height: 40px;
-    width: 300px;
+    width: 290px;
 }

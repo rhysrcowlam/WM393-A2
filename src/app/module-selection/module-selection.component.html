@@ -2,23 +2,26 @@
     <div>
         <mat-grid-list cols="2" rowHeight="2:0.75" class="grid-container">
             <mat-grid-tile>
-                <img src="Quiz.png" class="logo">
+                <div class="sdlc-container">
+                    <img src="/assets/SDLC.png" class="logo">
+                    <a routerLink="/BoardSelection" routerLinkActive="active">
+                        <button mat-flat-button aria-label="sdlc" class="button-style">
+                            WM393: Software Development Life Cycle
+                        </button>
+                    </a>
+                </div>
             </mat-grid-tile>
+
             <mat-grid-tile>
-                <img src="Resources.png" class="logo">
+                <div class="mi-container">
+                    <img src="/assets/MI.png" class="logo">
+                    <a routerLink="/BoardSelection" routerLinkActive="active">
+                        <button mat-flat-button aria-label="mi" class="button-style">
+                            WM275: Machine Intelligence
+                        </button>
+                    </a>
+                </div>
             </mat-grid-tile>
         </mat-grid-list>
-    </div>
-    <div class="button-container">
-        <a routerLink="/BoardSelection" routerLinkActive="active">
-            <button mat-flat-button aria-label="sdlc" class="button-style">
-                WM393: Software Development Life Cycle
-            </button>
-        </a>
-        <a routerLink="/BoardSelection" routerLinkActive="active">
-            <button mat-flat-button aria-label="ma" class="button-style">
-                WM275: Machine Intelligence
-            </button>
-        </a>
     </div>
 </div>
