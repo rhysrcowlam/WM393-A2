@@ -3,21 +3,16 @@
     <img src="/assets/WMG.png" class="wmg-logo">
 
     <div class="resource-container">
-        <a routerLink="/ModuleSelection" routerLinkActive="active">
-            <button mat-flat-button aria-label="Back to modules button" class="buttons-style">
-                Back to modules
-            </button>
-        </a>
-        <a routerLink="/BoardSelection" routerLinkActive="active">
-            <button mat-flat-button aria-label="Back to boards button" class="buttons-style">
-                Back to boards
-            </button>
-        </a>
+        <button mat-flat-button aria-label="Back to modules button" class="buttons-style" (click)="navigateToModules()">
+            Back to modules
+        </button>
+        <button mat-flat-button aria-label="Back to boards button" class="buttons-style" (click)="navigateToBoards()">
+            Back to boards
+        </button>
     </div>
 
     <div>
-        <!--<span *ngIf="studentSignedIn"> Student ID: </span>-->
-        <button mat-flat-button aria-label="Sign out button" class="sign-out-button">
+        <button mat-flat-button aria-label="Sign out button" class="sign-out-button" (click)="signOut()">
             Sign out
         </button>
     </div>

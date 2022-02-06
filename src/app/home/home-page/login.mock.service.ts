@@ -1,18 +1,19 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 import { AbstractLoginService } from './login.abstract.service';
-import { Login } from './login.interface';
+import { eRoles, Login } from './login.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MockLoginService implements AbstractLoginService {
+  public loggedIn: boolean = false;
 
   private mockUsers: Login[] = [
     {
       id: '1',
+      role: eRoles.Student,
       email: 'testUser@gmail.com',
       password: 'Password123',
     }
@@ -22,12 +23,22 @@ export class MockLoginService implements AbstractLoginService {
     return of(this.mockUsers);
   }
 
-  public authenticateUser(email: AbstractControl, password: AbstractControl): boolean {
-    if (email.value && password.value in this.mockUsers) {
-      return true
+  public authenticateUser(email: string, password: string): boolean {
+    const user = this.mockUsers.find(x => x.email == email && x.password == password);
+    if (user) {
+      this.loggedIn = true
+      return true;
     }
     else {
-      return false
+      return false;
     }
+  }
+
+  public getLogInStatus(): boolean {
+    return this.loggedIn
+  }
+
+  public signOutUser(): void {
+    this.loggedIn = false;
   }
 } 
