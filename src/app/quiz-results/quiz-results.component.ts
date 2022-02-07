@@ -13,11 +13,10 @@ export class QuizResultsComponent {
   constructor() { }
 
   public displayAnswers() {
-    console.log(this.question)
     const id = this.studentsAnswers.get(this.question.id)
-    if (id && id > -1) {
+    if (id !== undefined && id > -1) {
       return this.question.answers[id]
     }
-    return "Unknown"
+    return "Not attempted"
   }
 }

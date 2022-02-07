@@ -5,6 +5,8 @@ import { AbstractQuizService } from './quiz/quiz.abstract.service';
 import { MockQuizService } from './quiz/quiz.mock.service';
 import { AbstractLoginService } from './home/home-page/login.abstract.service';
 import { MockLoginService } from './home/home-page/login.mock.service';
+import { AbstractQuizResultsService } from './quiz-results/quiz-results.abstract.service';
+import { MockQuizResultsService } from './quiz-results/quiz-results.mock.service';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
@@ -42,7 +44,8 @@ import { BoardSelectionComponent } from './board-selection/board-selection.compo
   ],
   providers: [
     { provide: AbstractQuizService, useClass: MockQuizService },
-    { provide: AbstractLoginService, useClass: MockLoginService }
+    { provide: AbstractLoginService, useClass: MockLoginService },
+    { provide: AbstractQuizResultsService, useClass: MockQuizResultsService }
   ],
   bootstrap: [AppComponent]
 })

@@ -5,22 +5,25 @@
     height: 100%;
 }
 
-.header {
-    text-align: center;
+.questions {
     font-style: bold;
-    font-size: 35px;
-    margin-top: 10px;
+    font-size: 20px;
 }
 
-.answer-groups {
-    display: flex;
-    flex-direction: column;
-    margin: 5px;
-    align-items: flex-start;
+.correct-answer {
+    font-style: bold;
+    font-size: 16px;
     background-color: greenyellow;
 }
 
-.radio-button-style {
-    margin: 5px;
-    font-size: 15px;
+.user-correct-answer {
+    font-style: bold;
+    font-size: 16px;
+    background-color: greenyellow;
+}
+
+.user-wrong-answer {
+    font-style: bold;
+    font-size: 16px;
+    background-color: red;
 }

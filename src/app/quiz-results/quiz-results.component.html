@@ -1,7 +1,17 @@
 <div class="page-container">
     <div>
         <label class="questions">{{question.question}}</label>
-        <p class="answer-groups">{{question.answers[question.correctAnswer]}}</p>
-        <p class="answer-groups">{{displayAnswers()}}</p>
+
+        <p class="correct-answer">
+            {{question.answers[question.correctAnswer]}}
+        </p>
+
+        <p *ngIf="question.answers[question.correctAnswer] == displayAnswers()" class="user-correct-answer">
+            {{displayAnswers()}}
+        </p>
+
+        <p *ngIf="question.answers[question.correctAnswer] !== displayAnswers()" class="user-wrong-answer">
+            {{displayAnswers()}}
+        </p>
     </div>
 </div>

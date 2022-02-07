@@ -9,7 +9,14 @@
     </div>
 
     <div *ngIf="displayResults">
-        <h1 class="header">Post Lecture Quiz Results</h1>
+        <h1 class="header">
+            Post Lecture Quiz Results 
+            <br>
+            Correct Answers: 
+            <br>
+            {{studentsMark}} out of 4
+        </h1>
+
         <div *ngFor="let question of quizQuestions">
             <app-quiz-results [question]="question" [studentsAnswers]="studentsAnswers"></app-quiz-results>
         </div>
