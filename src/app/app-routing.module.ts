@@ -12,9 +12,9 @@ const appRoutes: Routes = [
   { path: '', redirectTo: 'HomePage', pathMatch: 'full'},
   { path: 'HomePage', component: HomePageComponent },
   { path: 'ModuleSelection', component: ModuleSelectionComponent},
-  { path: 'BoardSelection', component: BoardSelectionComponent},
-  { path: 'QuizSelection', component: QuizSelectionComponent},
-  { path: 'Quiz', component: QuizComponent },
+  { path: 'BoardSelection/:module', component: BoardSelectionComponent},
+  { path: 'QuizSelection/:module', component: QuizSelectionComponent},
+  { path: 'Quiz/:module/:id', component: QuizComponent },
   { path: 'QuizResults', component: QuizResultsComponent},
 ];
 

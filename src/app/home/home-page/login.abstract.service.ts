@@ -1,4 +1,3 @@
-import { AbstractControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 
 import { Login } from "./login.interface";

@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { AbstractLoginService } from '../home/home-page/login.abstract.service';
 import { QuizQuestion } from '../quiz/quiz.interface';
 
 @Component({
@@ -10,7 +11,11 @@ export class QuizResultsComponent {
   @Input() question: QuizQuestion = { question: '', correctAnswer: 0, answers: [], id: '' }
   @Input() studentsAnswers = new Map<string, number>()
 
-  constructor() { }
+  public loginStatus: boolean = this.loginService.getLogInStatus()
+  
+  constructor(
+    public loginService: AbstractLoginService,
+  ) { }
 
   public displayAnswers() {
     const id = this.studentsAnswers.get(this.question.id)

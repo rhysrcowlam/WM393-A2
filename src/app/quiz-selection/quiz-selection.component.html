@@ -1,18 +1,47 @@
-<div class="page-container">
-    <div class="quiz-button-container">
-        <a routerLink="/Quiz" routerLinkActive="active">
+<div *ngIf="!loginStatus">
+    <h1 routerLink="/HomePage" routerLinkActive="active" class="user-redirect">
+        Return to Sign in Page
+    </h1>
+</div>
+
+<div *ngIf="loginStatus" class="page-container">
+    <div *ngIf='router.url.includes("SDLC")' class="quiz-button-container">
+        <a routerLink="/Quiz/SDLC/1" routerLinkActive="active">
             <button mat-flat-button aria-label="SDLC Quiz 1" class="buttons-style">
                 Software Development Life Cycle Quiz 1
             </button>
         </a>
+
         <button mat-flat-button aria-label="SDLC Quiz 2" class="buttons-style">
             Software Development Life Cycle Quiz 2
         </button>
+
         <button mat-flat-button aria-label="SDLC Quiz 3" class="buttons-style">
             Software Development Life Cycle Quiz 3
         </button>
+
         <button mat-flat-button aria-label="SDLC Quiz 4" class="buttons-style">
             Software Development Life Cycle Quiz 4
+        </button>
+    </div>
+
+    <div *ngIf='router.url.includes("MI")' class="quiz-button-container">
+        <a routerLink="/Quiz/MI/1" routerLinkActive="active">
+            <button mat-flat-button aria-label="MI Quiz 1" class="buttons-style">
+                Machine Intelligence Quiz 1
+            </button>
+        </a>
+
+        <button mat-flat-button aria-label="MI Quiz 2" class="buttons-style">
+            Machine Intelligence Quiz 2
+        </button>
+
+        <button mat-flat-button aria-label="MI Quiz 3" class="buttons-style">
+            Machine Intelligence Quiz 3
+        </button>
+
+        <button mat-flat-button aria-label="MI Quiz 4" class="buttons-style">
+            Machine Intelligence Quiz 4
         </button>
     </div>
 </div>

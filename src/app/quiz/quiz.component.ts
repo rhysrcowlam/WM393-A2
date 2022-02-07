@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AbstractLoginService } from '../home/home-page/login.abstract.service';
 import { AbstractQuizService } from './quiz.abstract.service';
 import { AbstractQuizResultsService } from '../quiz-results/quiz-results.abstract.service'
 import { QuizQuestion } from './quiz.interface';
@@ -13,8 +14,8 @@ import { QuizQuestion } from './quiz.interface';
   styleUrls: ['./quiz.component.css']
 })
 
-export class QuizComponent implements OnInit{
-
+export class QuizComponent implements OnInit {
+  public loginStatus: boolean = this.loginService.getLogInStatus()
   public displayResults: boolean = false;
   public quizQuestions: QuizQuestion[] = [];
   public studentsAnswers = new Map<string, number>();
@@ -22,6 +23,7 @@ export class QuizComponent implements OnInit{
   public studentsMark: number = 0;
 
   constructor(
+    public loginService: AbstractLoginService,
     public quizService: AbstractQuizService,
     public quizResults: AbstractQuizResultsService
   ) { }

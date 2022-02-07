@@ -1,4 +1,10 @@
-<div class="page-container">
+<div *ngIf="!loginStatus">
+    <h1 routerLink="/HomePage" routerLinkActive="active" class="user-redirect">
+        Return to Sign in Page
+    </h1>
+</div>
+
+<div *ngIf="loginStatus" class="page-container">
     <div>
         <label class="questions">{{question.question}}</label>
 

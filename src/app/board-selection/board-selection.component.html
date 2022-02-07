@@ -1,10 +1,27 @@
-<div class="page-container">
+<div *ngIf="!loginStatus">
+    <h1 routerLink="/HomePage" routerLinkActive="active" class="user-redirect">
+        Return to Sign in Page
+    </h1>
+</div>
+
+<div *ngIf="loginStatus" class="page-container">
     <div>
         <mat-grid-list cols="5" rowHeight="2:2" class="grid-container">
-            <mat-grid-tile>
+            <mat-grid-tile *ngIf='router.url.includes("SDLC")'>
                 <div class="button-container">
                     <img src="/assets/Quiz.png" class="logo">
-                    <a routerLink="/QuizSelection" routerLinkActive="active">
+                    <a routerLink="/QuizSelection/SDLC" routerLinkActive="active">
+                        <button mat-flat-button aria-label="quizBoard" class="button-style">
+                            Quiz
+                        </button>
+                    </a>
+                </div>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf='router.url.includes("MI")'>
+                <div class="button-container">
+                    <img src="/assets/Quiz.png" class="logo">
+                    <a routerLink="/QuizSelection/MI" routerLinkActive="active">
                         <button mat-flat-button aria-label="quizBoard" class="button-style">
                             Quiz
                         </button>

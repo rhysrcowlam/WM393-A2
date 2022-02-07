@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { MockQuizService } from './quiz.mock.service';
 
-describe('MockQuizServiceService', () => {
+describe('MockQuizService', () => {
   let service: MockQuizService;
 
   beforeEach(() => {
