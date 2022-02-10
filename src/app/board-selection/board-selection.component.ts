@@ -11,6 +11,7 @@ import { BoardSelection, ModuleSelection } from '../module-selection/modules.int
 })
 export class BoardSelectionComponent implements OnInit {
   public loginStatus: boolean = this.loginService.getLogInStatus();
+  public user: string = "";
   public moduleId: string = "";
   public modules: ModuleSelection[] = [];
   public boards: BoardSelection[] = [];
@@ -23,6 +24,13 @@ export class BoardSelectionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(paramMap => {
+      const user = paramMap.get('userid');
+      if (user) {
+        this.user = user;
+      }
+    });
+
     this.route.paramMap.subscribe(paramMap => {
       const title = paramMap.get('module');
       if (title) {
@@ -51,7 +59,7 @@ export class BoardSelectionComponent implements OnInit {
 
   public handleNavigation(module: string, boardName: string) {
     if (boardName == "Quiz") {
-      this.router.navigate(['QuizSelection/', module]);
+      this.router.navigate(['QuizSelection/', this.user, module]);
     }
   }
 }

@@ -21,6 +21,7 @@ export class QuizComponent implements OnInit {
   public displayResults: boolean = false;
   public quizQuestions: QuizQuestion[] = [];
 
+  public user: string = "";
   public module: string = "";
   public quiz: string = "";
 
@@ -39,18 +40,25 @@ export class QuizComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
+      const user = paramMap.get('userid');
+      if (user) {
+        this.user = user;
+      }
+    });
+
+    this.route.paramMap.subscribe(paramMap => {
       const title = paramMap.get('module');
       if (title) {
         this.module = title;
       }
-    })
+    });
 
     this.route.paramMap.subscribe(paramMap => {
-      const title = paramMap.get('quizId');
-      if (title) {
-        this.quiz = title;
+      const quiz = paramMap.get('quizid');
+      if (quiz) {
+        this.quiz = quiz;
       }
-    })
+    });
 
     let questionList: string[] = [];
 
@@ -69,10 +77,6 @@ export class QuizComponent implements OnInit {
           }
         })
     );
-
-    // this.quizQuestionService.getQuizQuestions('1').subscribe(quizQuestions => {
-    //   this.quizQuestions = quizQuestions;
-    // });
   }
 
   public handleAnswer(selectedAnswer: number, questionId: string, correctAnswer: number) {
@@ -81,7 +85,8 @@ export class QuizComponent implements OnInit {
   }
 
   public handleBackNavigation() {
-    this.router.navigate(['QuizSelection/', this.module])
+    this.studentsMark = 0;
+    this.router.navigate(['QuizSelection/',this.user, this.module]);
   }
 
   submitQuiz() {
@@ -99,6 +104,6 @@ export class QuizComponent implements OnInit {
     if (this.studentsAnswers.get("4") == this.correctAnswerList.get("4")) {
       this.studentsMark = this.studentsMark + 1;
     }
-    this.quizResults.saveStudentsScore(this.studentsMark);
+    this.quizResults.saveStudentsScore(this.user, this.module, this.quiz, this.studentsMark);
   }
 }

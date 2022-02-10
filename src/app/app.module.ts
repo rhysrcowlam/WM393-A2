@@ -26,6 +26,7 @@ import { AbstractModuleService } from './module-selection/modules.abstract.servi
 import { MockModuleService } from './module-selection/modules.mock.service';
 import { AbstractQuizSelectionService } from './quiz-selection/quiz-selection.abstract.service';
 import { MockQuizSelectionService } from './quiz-selection/quiz-selection.mock.service';
+import { BarChartVerticalComponent } from './quiz-statistics/bar-chart-vertical/bar-chart-vertical/bar-chart-vertical.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { MockQuizSelectionService } from './quiz-selection/quiz-selection.mock.s
     QuizResultsComponent,
     BoardSelectionComponent,
     QuizStatisticsComponent,
+    BarChartVerticalComponent,
   ],
   imports: [
     BrowserModule,

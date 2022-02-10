@@ -1,0 +1,38 @@
+.user-redirect {
+    font-style: bold;
+    font-size: 20px;
+    color: blue;
+    position: absolute;
+    top: 40%;
+    left: 45%;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height: 100%;
+}
+
+.header {
+    text-align: center;
+    font-style: bold;
+    font-size: 35px;
+    margin-top: 10px;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 35%;
+    margin-left: 1%;
+    gap: 1500px
+}
+
+.button-style {
+    border: none;
+    background-color: rgb(89, 206, 245);
+    color: white;
+    height: 35px;
+    width: 180px;
+}

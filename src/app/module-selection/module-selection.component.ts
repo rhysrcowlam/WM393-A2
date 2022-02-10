@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractLoginService } from '../home/home-page/login.abstract.service';
 import { AbstractModuleService } from './modules.abstract.service';
 import { ModuleSelection } from './modules.interface';
@@ -11,20 +11,29 @@ import { ModuleSelection } from './modules.interface';
 })
 export class ModuleSelectionComponent implements OnInit {
   public loginStatus: boolean = this.loginService.getLogInStatus();
+  public user: string = "";
   public modules: ModuleSelection[] = [];
 
   constructor(
     public loginService: AbstractLoginService,
     public moduleService: AbstractModuleService,
-    public router: Router
-    ) { }
+    public router: Router,
+    public route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
-      this.moduleService.getModules()
-      .subscribe(modules => this.modules = modules)
+    this.route.paramMap.subscribe(paramMap => {
+      const user = paramMap.get('userid');
+      if (user) {
+        this.user = user;
+      }
+    });
+
+    this.moduleService.getModules()
+      .subscribe(modules => this.modules = modules);
   }
 
   public handleNavigation(module: string) {
-    this.router.navigate(['BoardSelection/', module])
+    this.router.navigate(['BoardSelection/', this.user, module]);
   }
 }

@@ -7,14 +7,16 @@ import { QuizSelectionComponent } from './quiz-selection/quiz-selection.componen
 import { QuizResultsComponent } from './quiz-results/quiz-results.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { BoardSelectionComponent } from './board-selection/board-selection.component';
+import { QuizStatisticsComponent } from './quiz-statistics/quiz-statistics.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'HomePage', pathMatch: 'full'},
   { path: 'HomePage', component: HomePageComponent },
-  { path: 'ModuleSelection', component: ModuleSelectionComponent},
-  { path: 'BoardSelection/:module', component: BoardSelectionComponent},
-  { path: 'QuizSelection/:module', component: QuizSelectionComponent},
-  { path: 'Quiz/:module/:quizId', component: QuizComponent },
+  { path: 'ModuleSelection/:userid', component: ModuleSelectionComponent},
+  { path: 'BoardSelection/:userid/:module', component: BoardSelectionComponent},
+  { path: 'QuizSelection/:userid/:module', component: QuizSelectionComponent},
+  { path: 'QuizStatistics/:userid/:module/:quizid', component: QuizStatisticsComponent},
+  { path: 'Quiz/:userid/:module/:quizid', component: QuizComponent },
   { path: 'QuizResults', component: QuizResultsComponent},
 ];
 

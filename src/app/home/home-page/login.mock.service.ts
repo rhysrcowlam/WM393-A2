@@ -14,15 +14,38 @@ export class MockLoginService implements AbstractLoginService {
 
   private mockUsers: Login[] = [
     {
+      id: '0',
+      role: eRoles.Tutor,
+      email: 'tutor@gmail.com',
+      password: 'Password',
+    },
+    {
       id: '1',
       role: eRoles.Student,
-      email: 'testUser@gmail.com',
-      password: 'Password123',
-    }
+      email: 'student1@gmail.com',
+      password: 'Password',
+    },
+    {
+      id: '2',
+      role: eRoles.Student,
+      email: 'student2@gmail.com',
+      password: 'Password',
+    },
+    {
+      id: '3',
+      role: eRoles.Student,
+      email: 'student3@gmail.com',
+      password: 'Password',
+    },
+
   ];
 
-  public getLoginCredentials(id: string): Observable<Login[]> {
-    return of(this.mockUsers);
+  public getLoginCredentials(email: string): Observable<Login | undefined> {
+    const user = this.mockUsers.find(x => x.email == email);
+    if (user) {
+      return of(user);
+    }
+    return of(undefined);
   }
 
   public authenticateUser(email: string, password: string): boolean {
@@ -48,12 +71,12 @@ export class MockLoginService implements AbstractLoginService {
     return this.loggedIn
   }
 
-  public getRoleTutor(): boolean {
-    return this.isTutor
-  }
-
-  public getRoleStudent(): boolean {
-    return this.isStudent
+  public getCurrentUser(id: string): Observable<Login | undefined> {
+    const currentUser = this.mockUsers.find(x => x.id == id);
+    if (currentUser) {
+      return of(currentUser);
+    }
+    return of(undefined);
   }
 
   public signOutUser(): void {

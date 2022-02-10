@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AbstractLoginService } from './login.abstract.service';
-import { Login } from './login.interface';
 import { Router } from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -16,17 +15,12 @@ export class HomePageComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
 
-  public userLogin: Login[] = []
-
   constructor(
     public loginService: AbstractLoginService,
     private router: Router,
     private _snackBar: MatSnackBar) {}
 
   ngOnInit() {
-    this.loginService.getLoginCredentials('1').subscribe(userLogin => {
-      this.userLogin = userLogin;
-    });
   }
 
   get email() {
@@ -53,12 +47,20 @@ export class HomePageComponent implements OnInit {
 
     const authenticated = this.loginService.authenticateUser(this.emailByValue, this.passwordByValue);
 
+    let userRole: string = "";
+
     if (authenticated)  {
-      this.router.navigate(['ModuleSelection']);}
-    // }
-    // else if (authenticated && this.loginService.getRoleStudent()) {
-    //   this.router.navigate(['ModuleSelection']);
-    // }
+      this.loginService.getLoginCredentials(this.emailByValue)
+      .subscribe(user => {
+        if (user) {
+          userRole = user.id;
+
+        }
+      });
+
+      this.router.navigate(['ModuleSelection/', userRole]);
+    }
+
     else{
       this._snackBar.open("User is not recognised", undefined, {duration: 2000,});
     }

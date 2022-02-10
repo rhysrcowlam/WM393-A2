@@ -3,6 +3,7 @@ import { AbstractLoginService } from '../home/home-page/login.abstract.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractQuizSelectionService } from './quiz-selection.abstract.service';
 import { Quizs } from './quiz-selection.interface';
+import { eRoles } from '../home/home-page/login.interface';
 
 @Component({
   selector: 'app-quiz-selection',
@@ -11,6 +12,7 @@ import { Quizs } from './quiz-selection.interface';
 })
 export class QuizSelectionComponent implements OnInit {
   public loginStatus: boolean = this.loginService.getLogInStatus();
+  public user: string = "";
   public module: string = "";
   public quizs: Quizs[] = [];
 
@@ -23,6 +25,13 @@ export class QuizSelectionComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap => {
+      const user = paramMap.get('userid');
+      if (user) {
+        this.user = user;
+      }
+    });
+
+    this.route.paramMap.subscribe(paramMap => {
       const title = paramMap.get('module');
       if (title) {
         this.module = title;
@@ -32,11 +41,11 @@ export class QuizSelectionComponent implements OnInit {
     let moduleQuizs: string[] = [];
 
     this.quizService.getModuleQuizList(this.module)
-    .subscribe(moduleQuiz => {
-      if (moduleQuiz){
-        moduleQuizs = moduleQuiz.quizs;
-      }
-    });
+      .subscribe(moduleQuiz => {
+        if (moduleQuiz) {
+          moduleQuizs = moduleQuiz.quizs;
+        }
+      });
 
     moduleQuizs.forEach(quiz =>
       this.quizService.getModuleQuizs(quiz)
@@ -46,12 +55,23 @@ export class QuizSelectionComponent implements OnInit {
           }
         })
     );
-
-    // this.quizService.getQuizzes('1')
-    // .subscribe(quiz => { this.quiz = quiz });
   }
 
   public handleNavigation(id: string) {
-    this.router.navigate(['Quiz/', this.module, id])
+    let userType: eRoles = 0;
+
+    this.loginService.getCurrentUser(this.user)
+      .subscribe(currentUser => {
+        if (currentUser) {
+          userType = currentUser.role;
+        }
+      });
+
+    if (userType == 0) {
+      this.router.navigate(['QuizStatistics/', this.user, this.module, id])
+    }
+    else if (userType == 1) {
+      this.router.navigate(['Quiz/', this.user, this.module, id])
+    }
   }
 }

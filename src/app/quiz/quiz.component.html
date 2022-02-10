@@ -6,7 +6,7 @@
 
 <div *ngIf="loginStatus" class="page-container">
     <div *ngIf="!displayResults">
-        <h1 class="header">Post Lecture Quiz</h1>
+        <h1 class="header">Post Lecture Quiz {{quiz}}</h1>
         <div *ngFor="let question of quizQuestions">
             <app-display-question [question]="question"
                 (selectionChangeEvent)="handleAnswer($event, question.id, question.correctAnswer)">

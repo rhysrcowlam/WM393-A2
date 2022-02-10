@@ -51,9 +51,9 @@ export class MockQuizService implements AbstractQuizService {
 
   public getQuizQuestions(id: string): Observable<QuizQuestion | undefined> {
     const question = this.mockQuizQuestions.find(x => x.id == id);
-        if (question) {
-            return of(question);
-        }
-        return of(undefined);
+    if (question) {
+      return of(question);
+    }
+    return of(undefined);
   }
 } 
