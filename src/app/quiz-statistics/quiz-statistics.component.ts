@@ -18,6 +18,12 @@ export class QuizStatisticsComponent implements OnInit {
   public module: string = "";
   public quiz: string = "";
 
+  public zeroMarks: number = 0;
+  public oneMark: number = 0;
+  public twoMarks: number = 0;
+  public threeMarks: number = 0;
+  public fourMarks: number = 0;
+
   public data: { name: string, series: { name: string, value: number }[] }[] = [];
   barColor = ['#a9ce97', '#a5b5de'];
   domain = [0, 4];
@@ -63,19 +69,71 @@ export class QuizStatisticsComponent implements OnInit {
 
     results.forEach(result => {
       if (result.quizId == this.quiz && result.moduleId == this.module) {
-        this.data.push(
-          {
-            name: "Student" + result.studentId,
-            series: [
-              {
-                name: result.moduleId + " Quiz " + result.quizId,
-                value: result.studentsScore
-              }
-            ]
-          }
-        )
+        if (result.studentsScore == 0) {
+          this.zeroMarks = this.zeroMarks + 1;
+        }
+        else if (result.studentsScore == 1) {
+          this.oneMark = this.oneMark + 1;
+        }
+        else if (result.studentsScore == 2) {
+          this.twoMarks = this.twoMarks + 1;
+        }
+        else if (result.studentsScore == 3) {
+          this.threeMarks = this.threeMarks + 1;
+        }
+        else if (result.studentsScore == 4) {
+          this.fourMarks = this.fourMarks + 1;
+        }
       }
     })
+
+    this.data = [
+      {
+        name: "0 out of 4",
+        series: [
+          {
+            name: "Scores",
+            value: this.zeroMarks
+          }
+        ]
+      },
+      {
+        name: "1 out of 4",
+        series: [
+          {
+            name: "Scores",
+            value: this.oneMark
+          }
+        ]
+      },
+      {
+        name: "2 out of 4",
+        series: [
+          {
+            name: "Scores",
+            value: this.twoMarks
+          }
+        ]
+      },
+      {
+        name: "3 out of 4",
+        series: [
+          {
+            name: "Scores",
+            value: this.threeMarks
+          }
+        ]
+      },
+      {
+        name: "4 out of 4",
+        series: [
+          {
+            name: "Scores",
+            value: this.fourMarks
+          }
+        ]
+      }
+    ]
   }
 
   public handleBackNavigation() {

@@ -9,9 +9,7 @@ import { QuizResults } from './quiz-results.interface';
 })
 export class MockQuizResultsService implements AbstractQuizResultsService {
 
-  private mockQuizResults: QuizResults[] = [
-
-  ]
+  private mockQuizResults: QuizResults[] = []
 
   public saveStudentsScore(studentId: string, moduleId: string, quizId: string, finalScore: number): void {
     var savedResult: QuizResults = { studentId: studentId, moduleId: moduleId, quizId: quizId, studentsScore: finalScore };
