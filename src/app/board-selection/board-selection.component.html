@@ -7,60 +7,12 @@
 <div *ngIf="loginStatus" class="page-container">
     <div>
         <mat-grid-list cols="5" rowHeight="2:2" class="grid-container">
-            <mat-grid-tile *ngIf='router.url.includes("SDLC")'>
+            <mat-grid-tile *ngFor="let board of boards">
                 <div class="button-container">
-                    <img src="/assets/Quiz.png" class="logo">
-                    <a routerLink="/QuizSelection/SDLC" routerLinkActive="active">
-                        <button mat-flat-button aria-label="quizBoard" class="button-style">
-                            Quiz
-                        </button>
-                    </a>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile *ngIf='router.url.includes("MI")'>
-                <div class="button-container">
-                    <img src="/assets/Quiz.png" class="logo">
-                    <a routerLink="/QuizSelection/MI" routerLinkActive="active">
-                        <button mat-flat-button aria-label="quizBoard" class="button-style">
-                            Quiz
-                        </button>
-                    </a>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="button-container">
-                    <img src="/assets/Resources.png" class="logo">
-                    <button mat-flat-button aria-label="resourceBoard" class="button-style">
-                        Resources
-                    </button>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="button-container">
-                    <img src="/assets/Q&A.png" class="logo">
-                    <button mat-flat-button aria-label="q&aBoard" class="button-style">
-                        Q and A
-                    </button>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="button-container">
-                    <img src="/assets/Discussions.png" class="logo">
-                    <button mat-flat-button aria-label="discussionsBoard" class="button-style">
-                        Discussions
-                    </button>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="button-container">
-                    <img src="/assets/Feedback.png" class="logo">
-                    <button mat-flat-button aria-label="feedbackBoard" class="button-style">
-                        Feedback
+                    <img src="/assets/{{board.title}}.png" class="logo">
+                    <button mat-flat-button class="button-style"
+                        (click)="handleNavigation(moduleId, board.title)">
+                        {{board.title}}
                     </button>
                 </div>
             </mat-grid-tile>

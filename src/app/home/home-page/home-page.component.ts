@@ -53,9 +53,12 @@ export class HomePageComponent implements OnInit {
 
     const authenticated = this.loginService.authenticateUser(this.emailByValue, this.passwordByValue);
 
-    if (authenticated) {
-      this.router.navigate(['ModuleSelection']);
-    }
+    if (authenticated)  {
+      this.router.navigate(['ModuleSelection']);}
+    // }
+    // else if (authenticated && this.loginService.getRoleStudent()) {
+    //   this.router.navigate(['ModuleSelection']);
+    // }
     else{
       this._snackBar.open("User is not recognised", undefined, {duration: 2000,});
     }

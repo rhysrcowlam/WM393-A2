@@ -1,7 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { Quiz } from "./quiz-selection.interface";
+import { ModuleToQuizs, Quizs } from "./quiz-selection.interface";
 
 export abstract class AbstractQuizSelectionService {
-    public abstract getQuiz(id: string): Observable<Quiz[]>;
+    public abstract getQuizs(id: string): Observable<Quizs[]>;
+    public abstract getModuleQuizList(id: string): Observable<ModuleToQuizs | undefined>;
+    public abstract getModuleQuizs(id: string): Observable<Quizs | undefined>;
 } 

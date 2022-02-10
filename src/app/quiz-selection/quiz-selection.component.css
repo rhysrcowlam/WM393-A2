@@ -14,26 +14,10 @@
     height: 100%;
 }
 
-.module-button-container {
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    transform: translate(-45%, -45%);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
 .quiz-button-container {
-    position: absolute;
-    left:50%;
-    top: 40%;
-    transform: translate(-45%, -45%);
-    padding: 10px;
     display: flex;
     flex-direction: column;
+    margin-top: 15%; 
     align-items: center;
     gap: 15px;
 }
@@ -44,23 +28,6 @@
     color: white;
     height: 40px;
     width: 280px;
-}
-
-.button-container {
-    position: absolute;
-    bottom: 22%;
-    display: flex;
-    flex-direction: row;
-    margin-left: 15px;
-    gap: 1500px
-}
-
-.button-style {
-    border: none;
-    background-color: rgb(89, 206, 245);
-    color: white;
-    height: 40px;
-    width: 150px;
 }
 
 /* .quiz-status-container {

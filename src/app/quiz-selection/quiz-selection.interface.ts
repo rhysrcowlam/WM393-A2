@@ -1,7 +1,10 @@
-import { QuizQuestion } from "../quiz/quiz.interface";
-
-export interface Quiz {
-    id: number
+export interface Quizs {
+    id: string
     title: string
-    questions: QuizQuestion[]
+    questions: string[]
+}
+
+export interface ModuleToQuizs {
+    id: string //module id
+    quizs: string[]
 }

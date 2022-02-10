@@ -16,9 +16,9 @@
 
     <div *ngIf="displayResults">
         <h1 class="header">
-            Post Lecture Quiz Results 
+            Post Lecture Quiz Results
             <br>
-            Correct Answers: 
+            Correct Answers:
             <br>
             {{studentsMark}} out of 4
         </h1>
@@ -30,11 +30,10 @@
     </div>
 
     <div class="button-container">
-        <a routerLink="/QuizSelection" routerLinkActive="true">
-            <button mat-flat-button aria-label="Exit Quiz" class="button-style">
-                Exit Quiz
-            </button>
-        </a>
+        <button mat-flat-button aria-label="Exit Quiz" class="button-style" (click)="handleBackNavigation()">
+            Exit Quiz
+        </button>
+        
         <button mat-flat-button aria-label="Submit" *ngIf="!displayResults" class=" button-style"
             (click)="submitQuiz()">
             Submit

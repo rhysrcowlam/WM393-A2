@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AbstractLoginService } from '../home/home-page/login.abstract.service';
+import { AbstractModuleService } from './modules.abstract.service';
+import { ModuleSelection } from './modules.interface';
 
 @Component({
   selector: 'app-module-selection',
@@ -7,10 +10,21 @@ import { AbstractLoginService } from '../home/home-page/login.abstract.service';
   styleUrls: ['./module-selection.component.css']
 })
 export class ModuleSelectionComponent implements OnInit {
-  public loginStatus: boolean = this.loginService.getLogInStatus()
+  public loginStatus: boolean = this.loginService.getLogInStatus();
+  public modules: ModuleSelection[] = [];
 
-  constructor(public loginService: AbstractLoginService) { }
+  constructor(
+    public loginService: AbstractLoginService,
+    public moduleService: AbstractModuleService,
+    public router: Router
+    ) { }
 
   ngOnInit(): void {
+      this.moduleService.getModules()
+      .subscribe(modules => this.modules = modules)
+  }
+
+  public handleNavigation(module: string) {
+    this.router.navigate(['BoardSelection/', module])
   }
 }

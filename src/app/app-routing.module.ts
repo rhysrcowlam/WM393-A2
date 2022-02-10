@@ -14,7 +14,7 @@ const appRoutes: Routes = [
   { path: 'ModuleSelection', component: ModuleSelectionComponent},
   { path: 'BoardSelection/:module', component: BoardSelectionComponent},
   { path: 'QuizSelection/:module', component: QuizSelectionComponent},
-  { path: 'Quiz/:module/:id', component: QuizComponent },
+  { path: 'Quiz/:module/:quizId', component: QuizComponent },
   { path: 'QuizResults', component: QuizResultsComponent},
 ];
 

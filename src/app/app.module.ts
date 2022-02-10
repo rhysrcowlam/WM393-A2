@@ -21,6 +21,11 @@ import { QuizComponent } from './quiz/quiz.component';
 import { DisplayQuestionComponent } from './quiz/display-question/display-question.component';
 import { QuizResultsComponent } from './quiz-results/quiz-results.component';
 import { BoardSelectionComponent } from './board-selection/board-selection.component';
+import { QuizStatisticsComponent } from './quiz-statistics/quiz-statistics.component';
+import { AbstractModuleService } from './module-selection/modules.abstract.service';
+import { MockModuleService } from './module-selection/modules.mock.service';
+import { AbstractQuizSelectionService } from './quiz-selection/quiz-selection.abstract.service';
+import { MockQuizSelectionService } from './quiz-selection/quiz-selection.mock.service';
 
 
 @NgModule({
@@ -35,6 +40,7 @@ import { BoardSelectionComponent } from './board-selection/board-selection.compo
     DisplayQuestionComponent,
     QuizResultsComponent,
     BoardSelectionComponent,
+    QuizStatisticsComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,9 @@ import { BoardSelectionComponent } from './board-selection/board-selection.compo
   providers: [
     { provide: AbstractQuizService, useClass: MockQuizService },
     { provide: AbstractLoginService, useClass: MockLoginService },
-    { provide: AbstractQuizResultsService, useClass: MockQuizResultsService }
+    { provide: AbstractQuizResultsService, useClass: MockQuizResultsService },
+    { provide: AbstractModuleService, useClass: MockModuleService},
+    { provide: AbstractQuizSelectionService, useClass: MockQuizSelectionService}
   ],
   bootstrap: [AppComponent]
 })

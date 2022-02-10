@@ -7,25 +7,13 @@
 <div *ngIf="loginStatus" class="page-container">
     <div>
         <mat-grid-list cols="2" rowHeight="2:0.75" class="grid-container">
-            <mat-grid-tile>
-                <div class="sdlc-container">
-                    <img src="/assets/SDLC.png" class="logo">
-                    <a routerLink="/BoardSelection/SDLC" routerLinkActive="active">
-                        <button mat-flat-button aria-label="sdlc" class="button-style">
-                            WM393: Software Development Life Cycle
-                        </button>
-                    </a>
-                </div>
-            </mat-grid-tile>
-
-            <mat-grid-tile>
-                <div class="mi-container">
-                    <img src="/assets/MI.png" class="logo">
-                    <a routerLink="/BoardSelection/MI" routerLinkActive="active">
-                        <button mat-flat-button aria-label="mi" class="button-style">
-                            WM275: Machine Intelligence
-                        </button>
-                    </a>
+            <mat-grid-tile *ngFor="let module of modules">
+                <div class="module-container">
+                    <img src="/assets/{{module.moduleId}}.png" class="logo">
+                    <button mat-flat-button aria-label="sdlc" class="button-style"
+                        (click)="handleNavigation(module.moduleId)">
+                        {{module.moduleTitle}}
+                    </button>
                 </div>
             </mat-grid-tile>
         </mat-grid-list>

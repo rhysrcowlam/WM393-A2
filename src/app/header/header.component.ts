@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractLoginService } from '../home/home-page/login.abstract.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  public module: string = "";
+
   constructor(
     public loginService: AbstractLoginService,
-    private router: Router) { }
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
+    
   }
 
   public navigateToModules() {
@@ -23,7 +27,7 @@ export class HeaderComponent implements OnInit {
 
   public navigateToBoards() {
     if (this.loginService.getLogInStatus()) {
-      this.router.navigate(['BoardSelection']);
+      this.router.navigate(['BoardSelection/', this.module]);
     }
   }
 

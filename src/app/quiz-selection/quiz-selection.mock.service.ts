@@ -2,57 +2,99 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { AbstractQuizSelectionService } from './quiz-selection.abstract.service';
-import { Quiz } from './quiz-selection.interface';
+import { ModuleToQuizs, Quizs } from './quiz-selection.interface';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MockQuizSelectionService implements AbstractQuizSelectionService {
 
-    private mockQuizzes: Quiz[] = [
+    private mockQuizs: Quizs[] = [
         {
-            id: 1,
-            title: "SDLC quiz 1",
+            id: "1",
+            title: "Software Development Life Cycle quiz 1",
+            questions: [
+                "1",
+                "2",
+                "3",
+                "4",
+            ]
+        },
+        {
+            id: "2",
+            title: "Software Development Life Cycle quiz 2",
             questions: []
         },
         {
-            id: 2,
-            title: "SDLC quiz 2",
+            id: "3",
+            title: "Software Development Life Cycle quiz 3",
             questions: []
         },
         {
-            id: 3,
-            title: "SDLC quiz 3",
+            id: "4",
+            title: "Software Development Life Cycle quiz 4",
             questions: []
         },
         {
-            id: 4,
-            title: "SDLC quiz 4",
+            id: "5",
+            title: "Machine Intelligence quiz 1",
             questions: []
         },
         {
-            id: 5,
-            title: "MI quiz 1",
+            id: "6",
+            title: "Machine Intelligence quiz 2",
             questions: []
         },
         {
-            id: 6,
-            title: "MI quiz 2",
+            id: "7",
+            title: "Machine Intelligence quiz 3",
             questions: []
         },
         {
-            id: 7,
-            title: "MI quiz 3",
-            questions: []
-        },
-        {
-            id: 8,
-            title: "MI quiz 4",
+            id: "8",
+            title: "Machine Intelligence quiz 4",
             questions: []
         }
     ];
 
-    public getQuiz(id: string): Observable<Quiz[]> {
-        return of(this.mockQuizzes);
+    private moduleData: ModuleToQuizs[] = [
+        {
+            id: "SDLC",
+            quizs: [
+                "1",
+                "2",
+                "3",
+                "4"
+            ]
+        },
+        {
+            id: "MI",
+            quizs: [
+                "5",
+                "6",
+                "7",
+                "8"
+            ]
+        }
+    ]
+
+    public getQuizs(id: string): Observable<Quizs[]> {
+        return of(this.mockQuizs);
+    }
+
+    public getModuleQuizList(id: string): Observable<ModuleToQuizs | undefined> {
+        const module = this.moduleData.find(x => x.id == id);
+        if (module) {
+            return of(module);
+        }
+        return of(undefined);
+    }
+
+    public getModuleQuizs(id: string): Observable<Quizs | undefined> {
+        const quiz = this.mockQuizs.find(x => x.id == id);
+        if (quiz) {
+            return of(quiz);
+        }
+        return of(undefined);
     }
 } 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractLoginService } from '../home/home-page/login.abstract.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AbstractModuleService } from '../module-selection/modules.abstract.service';
+import { BoardSelection, ModuleSelection } from '../module-selection/modules.interface';
 
 @Component({
   selector: 'app-board-selection',
@@ -8,14 +10,48 @@ import { Router } from '@angular/router';
   styleUrls: ['./board-selection.component.css']
 })
 export class BoardSelectionComponent implements OnInit {
-  public loginStatus: boolean = this.loginService.getLogInStatus()
+  public loginStatus: boolean = this.loginService.getLogInStatus();
+  public moduleId: string = "";
+  public modules: ModuleSelection[] = [];
+  public boards: BoardSelection[] = [];
 
-  constructor (
+  constructor(
     public loginService: AbstractLoginService,
-    public router:Router
-    ) { }
+    public moduleService: AbstractModuleService,
+    public route: ActivatedRoute,
+    public router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.route.paramMap.subscribe(paramMap => {
+      const title = paramMap.get('module');
+      if (title) {
+        this.moduleId = title;
+      }
+    })
+
+    let moduleBoards: string[] = [];
+
+    this.moduleService.getModule(this.moduleId)
+      .subscribe(module => {
+        if (module) {
+          moduleBoards = module.boards;
+        }
+      });
+
+    moduleBoards.forEach(board =>
+      this.moduleService.getModuleBoard(board)
+        .subscribe(board => {
+          if (board) {
+            this.boards.push(board);
+          }
+        })
+    );
   }
 
+  public handleNavigation(module: string, boardName: string) {
+    if (boardName == "Quiz") {
+      this.router.navigate(['QuizSelection/', module]);
+    }
+  }
 }
