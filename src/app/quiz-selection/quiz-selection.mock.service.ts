@@ -23,37 +23,72 @@ export class MockQuizSelectionService implements AbstractQuizSelectionService {
         {
             id: "2",
             title: "Software Development Life Cycle quiz 2",
-            questions: []
+            questions: [
+                "5",
+                "6",
+                "7",
+                "8",
+            ]
         },
         {
             id: "3",
             title: "Software Development Life Cycle quiz 3",
-            questions: []
+            questions: [
+                "9",
+                "10",
+                "11",
+                "12",
+            ]
         },
         {
             id: "4",
             title: "Software Development Life Cycle quiz 4",
-            questions: []
+            questions: [
+                "13",
+                "14",
+                "15",
+                "16",
+            ]
         },
         {
             id: "5",
             title: "Machine Intelligence quiz 1",
-            questions: []
+            questions: [
+                "17",
+                "18",
+                "19",
+                "20",
+            ]
         },
         {
             id: "6",
             title: "Machine Intelligence quiz 2",
-            questions: []
+            questions: [
+                "21",
+                "22",
+                "23",
+                "24",
+            ]
         },
         {
             id: "7",
             title: "Machine Intelligence quiz 3",
-            questions: []
+            questions: [
+                "25",
+                "26",
+                "27",
+                "28",
+            ]
         },
         {
             id: "8",
             title: "Machine Intelligence quiz 4",
-            questions: []
+            questions: [
+                "29",
+                "30",
+                "31",
+                "32",
+            ]
         }
     ];
 

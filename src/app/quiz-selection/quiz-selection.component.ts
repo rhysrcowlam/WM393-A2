@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AbstractQuizSelectionService } from './quiz-selection.abstract.service';
 import { Quizs } from './quiz-selection.interface';
 import { eRoles } from '../home/home-page/login.interface';
+import { AbstractQuizResultsService } from '../quiz-results/quiz-results.abstract.service';
 
 @Component({
   selector: 'app-quiz-selection',
@@ -23,7 +24,7 @@ export class QuizSelectionComponent implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       const user = paramMap.get('userid');
       if (user) {
@@ -66,7 +67,7 @@ export class QuizSelectionComponent implements OnInit {
           userType = currentUser.role;
         }
       });
-
+    
     if (userType == 0) {
       this.router.navigate(['QuizStatistics/', this.user, this.module, id])
     }

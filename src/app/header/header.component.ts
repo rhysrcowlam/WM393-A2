@@ -19,19 +19,19 @@ export class HeaderComponent implements OnInit {
     
   }
 
-  public navigateToModules() {
+  public navigateToModules(): void {
     if (this.loginService.getLogInStatus()) {
       this.router.navigate(['ModuleSelection']);
     }
   }
 
-  public navigateToBoards() {
+  public navigateToBoards(): void {
     if (this.loginService.getLogInStatus()) {
       this.router.navigate(['BoardSelection/', this.module]);
     }
   }
 
-  public signOut() {
+  public signOut(): void {
     this.loginService.signOutUser();
     this.router.navigate(['HomePage'])
   }

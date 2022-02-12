@@ -8,7 +8,7 @@ import { BoardSelection, ModuleSelection } from './modules.interface';
   providedIn: 'root'
 })
 export class MockModuleService implements AbstractModuleService {
-  
+  // Mock data of modules on the system.
   private modules: ModuleSelection[] = [
     {
       id: "1",
@@ -32,6 +32,7 @@ export class MockModuleService implements AbstractModuleService {
     }
   ]
 
+  // Mock data of boards on the system.
   private boards: BoardSelection[] = [
     {
       id: "1",
@@ -55,10 +56,12 @@ export class MockModuleService implements AbstractModuleService {
     },
   ]
 
+  // Retrieve a list of all of the available modules.
   public getModules(): Observable<ModuleSelection[]> {
     return of(this.modules)
   }
 
+  // Retrieve one specific module from the array of modules.
   public getModule(title: string): Observable<ModuleSelection | undefined> {
     const module = this.modules.find(x => x.moduleId == title);
     if (module) {
@@ -67,6 +70,7 @@ export class MockModuleService implements AbstractModuleService {
     return of(undefined)
   }
 
+  // Retrieve one specific board from the array of boards.
   public getModuleBoard(id: string): Observable<BoardSelection | undefined> {
     const board = this.boards.find(x => x.id == id);
     if (board) {

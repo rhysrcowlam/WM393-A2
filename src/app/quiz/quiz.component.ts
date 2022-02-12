@@ -38,7 +38,7 @@ export class QuizComponent implements OnInit {
     public route: ActivatedRoute
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       const user = paramMap.get('userid');
       if (user) {
@@ -89,7 +89,7 @@ export class QuizComponent implements OnInit {
     this.router.navigate(['QuizSelection/',this.user, this.module]);
   }
 
-  submitQuiz() {
+  public submitQuiz() {
     this.displayResults = true;
 
     if (this.studentsAnswers.get("1") == this.correctAnswerList.get("1")) {

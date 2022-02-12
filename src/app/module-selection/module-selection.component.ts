@@ -33,7 +33,7 @@ export class ModuleSelectionComponent implements OnInit {
       .subscribe(modules => this.modules = modules);
   }
 
-  public handleNavigation(module: string) {
+  public handleNavigation(module: string): void {
     this.router.navigate(['BoardSelection/', this.user, module]);
   }
 }

@@ -39,7 +39,7 @@ export class HomePageComponent implements OnInit {
     return this.loginForm.get('password')?.value;
   }
 
-  submit() {
+  submit(): void {
     // .valid checks that loginForm has been filled out correctly.
     if (!this.loginForm.valid) {
       return;
@@ -53,7 +53,7 @@ export class HomePageComponent implements OnInit {
       this.loginService.getLoginCredentials(this.emailByValue)
       .subscribe(user => {
         if (user) {
-          userRole = user.id;
+          userRole = user.role.toString();
 
         }
       });
