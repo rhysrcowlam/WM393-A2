@@ -46,6 +46,9 @@ The following steps run the application in on a dev server.
    * Example: C:\Users\username\WM393-A2
  * Run the following command: npm install
  * Run the following command: ng serve
+ * Open a web browser of you choice
+ * The terminal output will tell you which port to navigate to:
+   * Type into the URL search bar: http://localhost:portname (usually 4200)
 
 ### Cypress Testing
 
