@@ -38,6 +38,12 @@ export class ModuleSelectionComponent implements OnInit {
 
   // Navigate to the BoardSelection page when the user clicks the quiz button parsing the user id and module id in the url.
   public handleNavigation(module: string): void {
+    if (module = 'SDLC') {
+      this.moduleService.sdlcSetCurrentModule()
+    }
+    else if (module = 'MI') {
+      this.moduleService.miSetCurrentModule()
+    }
     this.router.navigate(['BoardSelection/', this.user, module]);
   }
 }

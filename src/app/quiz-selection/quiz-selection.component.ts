@@ -5,6 +5,7 @@ import { AbstractQuizSelectionService } from './quiz-selection.abstract.service'
 import { Quizs } from './quiz-selection.interface';
 import { eRoles } from '../home/home-page/login.interface';
 import { AbstractQuizResultsService } from '../quiz-results/quiz-results.abstract.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-quiz-selection',
@@ -13,6 +14,7 @@ import { AbstractQuizResultsService } from '../quiz-results/quiz-results.abstrac
 })
 export class QuizSelectionComponent implements OnInit {
   public loginStatus: boolean = this.loginService.getLogInStatus();
+  public student: number = this.loginService.getCurrentStudent();
   public user: string = "";
   public module: string = "";
   public quizs: Quizs[] = [];
@@ -20,8 +22,10 @@ export class QuizSelectionComponent implements OnInit {
   constructor(
     public loginService: AbstractLoginService,
     public quizService: AbstractQuizSelectionService,
+    public resultsService: AbstractQuizResultsService,
     public route: ActivatedRoute,
-    public router: Router
+    public router: Router,
+    private _snackBar: MatSnackBar
   ) { }
 
   // Runs on component initialisation.
@@ -74,14 +78,21 @@ export class QuizSelectionComponent implements OnInit {
           userType = currentUser.role;
         }
       });
-    
+
     // If the user is a tutor, navigate to the quiz statistics page parsing the user id, module id, and quiz id in the url.
     if (userType == 0) {
       this.router.navigate(['QuizStatistics/', this.user, this.module, id])
     }
     // If the user is a student, navigate to the quiz statistics page parsing the user id, module id, and quiz id in the url.
     else if (userType == 1) {
-      this.router.navigate(['Quiz/', this.user, this.module, id])
+      // If the results service holds an result for the current student for the selected quiz then do not allow access to quiz.
+      if (this.resultsService.checkForResult(id, this.student)) {
+        this._snackBar.open("Quiz has already been attempted", undefined, {duration: 2000,});
+      }
+      else {
+        this.router.navigate(['Quiz/', this.user, this.module, id])
+      }
+
     }
   }
 }

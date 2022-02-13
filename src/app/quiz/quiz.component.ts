@@ -13,7 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class QuizComponent implements OnInit {
-  public loginStatus: boolean = this.loginService.getLogInStatus()
+  public loginStatus: boolean = this.loginService.getLogInStatus();
+  public student: number = this.loginService.getCurrentStudent();
   public displayResults: boolean = false;
   public quizQuestions: QuizQuestion[] = [];
 
@@ -106,6 +107,6 @@ export class QuizComponent implements OnInit {
     }
 
     // Save the result to the results mock service.
-    this.quizResults.saveStudentsScore(this.user, this.module, this.quiz, this.studentsMark);
+    this.quizResults.saveStudentsScore(this.student, this.module, this.quiz, this.studentsMark);
   }
 }

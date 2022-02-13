@@ -11,6 +11,7 @@ export class MockLoginService implements AbstractLoginService {
   public loggedIn: boolean = false;
   public isStudent: boolean = false;
   public isTutor: boolean = false;
+  public studentId: number = 0;
 
   // Array of user objects.
   private mockUsers: Login[] = [
@@ -62,6 +63,15 @@ export class MockLoginService implements AbstractLoginService {
       }
       else if (user.role == 1) {
         this.isStudent = true;
+        if (user.email == 'student1@gmail.com') {
+          this.studentId = 1;
+        }
+        else if (user.email == 'student2@gmail.com') {
+          this.studentId = 2;
+        }
+        else if (user.email == 'student3@gmail.com') {
+          this.studentId = 3;
+        }
       }
       return true;
     }
@@ -98,6 +108,11 @@ export class MockLoginService implements AbstractLoginService {
       return of(currentUser);
     }
     return of(undefined);
+  }
+
+  // Returns the students individual id.
+  public getCurrentStudent(): number {
+      return this.studentId;
   }
 
   // Handle the sign out function setting all flags to false.

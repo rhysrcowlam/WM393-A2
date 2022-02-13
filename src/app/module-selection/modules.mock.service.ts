@@ -8,6 +8,9 @@ import { BoardSelection, ModuleSelection } from './modules.interface';
   providedIn: 'root'
 })
 export class MockModuleService implements AbstractModuleService {
+  public sdlc: boolean = false;
+  public mi: boolean = false;
+
   // Mock data of modules on the system.
   private modules: ModuleSelection[] = [
     {
@@ -78,4 +81,30 @@ export class MockModuleService implements AbstractModuleService {
     }
     return of(undefined)
   }
-} 
+
+  // Set sdlc variable to true.
+  public sdlcSetCurrentModule(): void {
+      this.sdlc = true;
+  }
+
+  // Set mi variable to true.
+  public miSetCurrentModule(): void {
+    this.mi = true;
+  }
+
+  // Returns true if sdlc is the current module selected.
+  public sdlcCurrentModule(): boolean {
+    if (this.sdlc) {
+      return true;
+    }
+    return false;
+  }
+
+  // Returns true if mi is the current module selected.
+  public miCurrentModule(): boolean {
+    if (this.mi) {
+      return true;
+    }
+    return false;
+  }
+}

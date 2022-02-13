@@ -1,5 +1,5 @@
 export interface QuizResults {
-    studentId: string,
+    studentId: number,
     moduleId: string,
     quizId: string,
     studentsScore: number

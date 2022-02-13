@@ -9,5 +9,6 @@ export abstract class AbstractLoginService {
     public abstract userIsStudent(): boolean;
     public abstract userIsTutor(): boolean;
     public abstract getCurrentUser(id: string): Observable<Login | undefined>;
+    public abstract getCurrentStudent(): number;
     public abstract signOutUser(): void;
 } 
