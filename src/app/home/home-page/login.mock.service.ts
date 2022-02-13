@@ -59,7 +59,6 @@ export class MockLoginService implements AbstractLoginService {
       else if (user.role == 1) {
         this.isStudent = true;
       }
-
       return true;
     }
     else {
@@ -68,7 +67,21 @@ export class MockLoginService implements AbstractLoginService {
   }
 
   public getLogInStatus(): boolean {
-    return this.loggedIn
+    return this.loggedIn;
+  }
+
+  public userIsStudent(): boolean {
+    if (this.isStudent) {
+      return true;
+    }
+    return false;
+  }
+
+  public userIsTutor(): boolean {
+    if (this.isTutor) {
+      return true;
+    }
+    return false;
   }
 
   public getCurrentUser(id: string): Observable<Login | undefined> {

@@ -54,7 +54,6 @@ export class HomePageComponent implements OnInit {
       .subscribe(user => {
         if (user) {
           userRole = user.role.toString();
-
         }
       });
 

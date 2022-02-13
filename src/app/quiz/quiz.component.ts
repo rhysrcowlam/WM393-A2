@@ -6,10 +6,6 @@ import { QuizQuestion } from './quiz.interface';
 import { AbstractQuizSelectionService } from '../quiz-selection/quiz-selection.abstract.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-/**
- * @title Radios with ngModel
- */
-
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -63,11 +59,11 @@ export class QuizComponent implements OnInit {
     let questionList: string[] = [];
 
     this.quizService.getModuleQuizs(this.quiz)
-    .subscribe(quiz => {
-      if (quiz){
-        questionList = quiz.questions;
-      }
-    });
+      .subscribe(quiz => {
+        if (quiz) {
+          questionList = quiz.questions;
+        }
+      });
 
     questionList.forEach(quiz =>
       this.quizQuestionService.getQuizQuestions(quiz)
@@ -86,23 +82,16 @@ export class QuizComponent implements OnInit {
 
   public handleBackNavigation() {
     this.studentsMark = 0;
-    this.router.navigate(['QuizSelection/',this.user, this.module]);
+    this.router.navigate(['QuizSelection/', this.user, this.module]);
   }
 
   public submitQuiz() {
     this.displayResults = true;
 
-    if (this.studentsAnswers.get("1") == this.correctAnswerList.get("1")) {
-      this.studentsMark = this.studentsMark + 1;
-    }
-    if (this.studentsAnswers.get("2") == this.correctAnswerList.get("2")) {
-      this.studentsMark = this.studentsMark + 1;
-    }
-    if (this.studentsAnswers.get("3") == this.correctAnswerList.get("3")) {
-      this.studentsMark = this.studentsMark + 1;
-    }
-    if (this.studentsAnswers.get("4") == this.correctAnswerList.get("4")) {
-      this.studentsMark = this.studentsMark + 1;
+    for (let key of this.studentsAnswers.keys()) {
+      if (this.studentsAnswers.get(key) == this.correctAnswerList.get(key)) {
+        this.studentsMark = this.studentsMark + 1;
+      }
     }
     this.quizResults.saveStudentsScore(this.user, this.module, this.quiz, this.studentsMark);
   }

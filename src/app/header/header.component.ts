@@ -8,26 +8,33 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  public module: string = "";
-
   constructor(
     public loginService: AbstractLoginService,
-    private router: Router,
-    ) { }
+    public router: Router,
+  ) { }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   public navigateToModules(): void {
+    console.log(this.loginService.getLogInStatus())
+    console.log(this.loginService.userIsTutor())
+    console.log(this.loginService.userIsStudent())
+
+
     if (this.loginService.getLogInStatus()) {
-      this.router.navigate(['ModuleSelection']);
+      if (this.loginService.userIsTutor()) {
+        this.router.navigate(['ModuleSelection/0']);
+      }
+      else if (this.loginService.userIsTutor() == true) {
+        console.log(this.loginService.userIsStudent())
+        this.router.navigate(['ModuleSelection/1']);
+      }
     }
   }
 
   public navigateToBoards(): void {
     if (this.loginService.getLogInStatus()) {
-      this.router.navigate(['BoardSelection/', this.module]);
+      this.router.navigate(['BoardSelection']);
     }
   }
 
