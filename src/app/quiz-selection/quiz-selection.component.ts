@@ -87,7 +87,7 @@ export class QuizSelectionComponent implements OnInit {
     else if (userType == 1) {
       // If the results service holds an result for the current student for the selected quiz then do not allow access to quiz.
       if (this.resultsService.checkForResult(id, this.student)) {
-        this._snackBar.open("Quiz has already been attempted", undefined, {duration: 2000,});
+        this._snackBar.open("Quiz has already been attempted", undefined, {duration: 6000,});
       }
       else {
         this.router.navigate(['Quiz/', this.user, this.module, id])

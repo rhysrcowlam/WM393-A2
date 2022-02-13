@@ -9,4 +9,5 @@ export abstract class AbstractModuleService {
     public abstract miSetCurrentModule(): void;
     public abstract sdlcCurrentModule(): boolean;
     public abstract miCurrentModule(): boolean;
+    public abstract resetModule(): void;
 }

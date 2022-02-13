@@ -70,7 +70,7 @@ export class HomePageComponent implements OnInit {
     }
     // Inform the user that the credentials are invalid.
     else{
-      this._snackBar.open("User is not recognised", undefined, {duration: 2000,});
+      this._snackBar.open("User is not recognised", undefined, {duration: 6000,});
     }
   }
 }

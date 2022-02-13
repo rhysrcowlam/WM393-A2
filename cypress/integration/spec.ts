@@ -49,7 +49,7 @@ describe('The system should be able to handle alternative login scenarios.', () 
     // Login button clicked.
     cy.get('.center > .mat-focus-indicator').click()
     // Confirms user not recognised message is displayed.
-    cy.get('.mat-simple-snackbar').should('be.visible')
+    cy.get('#cdk-overlay-0').should('be.visible')
     // Setup for next test.
     cy.get('#mat-input-0').clear()
     cy.get('#mat-input-1').clear()
@@ -59,7 +59,7 @@ describe('The system should be able to handle alternative login scenarios.', () 
     // Login button clicked.
     cy.get('.center > .mat-focus-indicator').click()
     // Confirms user not recognised message is displayed.
-    cy.get('.mat-simple-snackbar').should('be.visible')
+    cy.get('#cdk-overlay-1').should('be.visible')
     // Setup for next test.
     cy.get('#mat-input-0').clear()
     cy.get('#mat-input-1').clear()
@@ -67,9 +67,9 @@ describe('The system should be able to handle alternative login scenarios.', () 
 })
 
 
-// End-to-end testing of functionality available to students.
+// End-to-end testing of functionality available to students accessing the SDLC module.
 describe('The student should be able to access the SDLC module and complete a quiz.', () => {
-  it('User navigates to the SDLC boards.', () => {
+  it('User can navigate to the SDLC boards and and back to the module selection page.', () => {
     // Student logs in.
     cy.get('#mat-input-0').type('student1@gmail.com')
     cy.get('#mat-input-1').type('Password')
@@ -82,12 +82,18 @@ describe('The student should be able to access the SDLC module and complete a qu
     // Confirm user see's boards for the SDLC module.
     cy.url().should('eq', 'http://localhost:4200/BoardSelection/1/SDLC')
   })
-  it('User navigates to the quiz selection for SDLC page by selecting the quiz board.', () => {
+  it('User can navigate to the quiz selection for SDLC page by selecting the quiz board and navigate back to board selection using back to boards button.', () => {
     // Student clicks the quiz board button.
     cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
     // Confirm quiz selection page is displayed showing SDLC quiz's.
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/SDLC')
     cy.contains('Software Development Life Cycle quiz 1')
+    // Student clicks back to boards button.
+    cy.get('[aria-label="Back to boards button"] > .mat-button-wrapper').click()
+    // Confirm SDLC board selection page is displayed.
+    cy.url().should('eq', 'http://localhost:4200/BoardSelection/1/SDLC')
+    // Setup for next test
+    cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
   })
   it('User selects a quiz to attempt and exits the quiz once it is displayed.', () => {
     // User clicks quiz button.
@@ -101,59 +107,52 @@ describe('The student should be able to access the SDLC module and complete a qu
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/SDLC')
     cy.contains('Software Development Life Cycle quiz 1')
   })
-  // it('User completes and submits a quiz and recieves 0 marks.', () => {
-  //   // User clicks quiz button.
-  //   cy.get(':nth-child(1) > .mat-focus-indicator').click()
-  //   // User selects an answer to question 1.
-  //   cy.get('#mat-radio-26 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
-  //   // // User selects an answer to question 2.
-  //   // cy.get('#mat-radio-30 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
-  //   // // User selects an answer to question 3.
-  //   // cy.get('#mat-radio-35 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
-  //   // // User selects an answer to question 4.
-  //   // cy.get('#mat-radio-39 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
-  //   // User submits quiz.
-  //   cy.get('.button-container > .ng-star-inserted').click()
-  //   // Confirm quiz results page is displayed showing students score.
-  //   cy.url().should('eq', 'http://localhost:4200/Quiz/1/SDLC/1')
-  //   cy.contains('Post Lecture Quiz Results')
-  //   cy.contains('0 out of 4')
-  //   // User clicks exit button.
-  //   cy.get('.button-container > .mat-focus-indicator').click()
-  //   // Confirm quiz selection page for SDLC module is displayed.
-  //   cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/SDLC')
-  //   cy.contains('Software Development Life Cycle quiz 1')
-  // })
+  it('User completes and submits a quiz and recieves 0 marks.', () => {
+    // User clicks quiz button.
+    cy.get(':nth-child(1) > .mat-focus-indicator').click()
+    // User selects an answer to question 1.
+    cy.get('#mat-radio-26 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
+    // User submits quiz.
+    cy.get('.button-container > .ng-star-inserted').click()
+    // Confirm quiz results page is displayed showing students score.
+    cy.url().should('eq', 'http://localhost:4200/Quiz/1/SDLC/1')
+    cy.contains('Post Lecture Quiz Results')
+    cy.contains('0 out of 4')
+    // User clicks exit button.
+    cy.get('.button-container > .mat-focus-indicator').click()
+    // Confirm quiz selection page for SDLC module is displayed.
+    cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/SDLC')
+    cy.contains('Software Development Life Cycle quiz 1')
+    // Test that the student can only attempt the quiz once by clicking the quiz button and seeing the popup message.
+    cy.get(':nth-child(1) > .mat-focus-indicator').click()
+    cy.get('#cdk-overlay-2').should('be.visible')
+    // Setup for next test by confirming that the back to module button works.
+    cy.get('[aria-label="Back to modules button"]').click()
+    cy.url().should('eq', 'http://localhost:4200/ModuleSelection/1')
+  })
 })
 
 
-
-
-
-
-
+// End-to-end testing of functionality available to students accessing the MI module.
 describe('The student should be able to access the MI module and complete a quiz.', () => {
   it('User navigates to the MI boards.', () => {
-    // temp
-    cy.get('app-header > .mat-toolbar > :nth-child(4) > .mat-focus-indicator > .mat-button-wrapper').click()
-    cy.get('#mat-input-2').type('student1@gmail.com')
-    cy.get('#mat-input-3').type('Password')
-    // Login button clicked.
-    cy.get('.center > .mat-focus-indicator').click()
-
-
-
     // Student clicks the button for the MI module.
     cy.get('[style="left: calc((50% - 0.5px + 1px) * 1); width: calc((50% - 0.5px) * 1 + 0px); margin-top: 0px; padding-top: calc((18.75% - 0.5px) * 1 + 0px);"] > .mat-grid-tile-content > .module-container > .mat-focus-indicator').click()
     // Confirm user see's boards for the MI module.
     cy.url().should('eq', 'http://localhost:4200/BoardSelection/1/MI')
   })
-  it('User navigates to the quiz selection page for MI by selecting the quiz board.', () => {
+  it('User can navigate to the quiz selection for SDLC page by selecting the quiz board and navigate back to board selection using back to boards button.', () => {
     // Student clicks the quiz board button.
     cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
     // Confirm quiz selection page is displayed showing MI quiz's.
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/MI')
     cy.contains('Machine Intelligence quiz 1')
+    // Student clicks back to boards button.
+    cy.get('[aria-label="Back to boards button"] > .mat-button-wrapper').click()
+    // Confirm MI board selection page is displayed.
+    cy.url().should('eq', 'http://localhost:4200/BoardSelection/1/MI')
+    // Setup for next test
+    cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
   })
   it('User selects a quiz to attempt and exits the quiz once it is displayed.', () => {
     // User clicks quiz button.
@@ -167,34 +166,40 @@ describe('The student should be able to access the MI module and complete a quiz
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/MI')
     cy.contains('Machine Intelligence quiz 1')
   })
-  // it('User completes and submits a quiz and recieves 0 marks.', () => {
-  //   // User clicks quiz button.
-  //   cy.get(':nth-child(1) > .mat-focus-indicator').click()
-  //   // User selects an answer to question 1.
-  //   cy.get('#mat-radio-47 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
-  //   // User submits quiz.
-  //   cy.get('.button-container > .ng-star-inserted').click()
-  //   // Confirm quiz results page is displayed showing students score.
-  //   cy.url().should('eq', 'http://localhost:4200/Quiz/1/MI/5')
-  //   cy.contains('Post Lecture Quiz Results')
-  //   cy.contains('0 out of 4')
-  //   // User clicks exit button.
-  //   cy.get('.button-container > .mat-focus-indicator').click()
-  //   // Confirm quiz selection page for MI module is displayed.
-  //   cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/MI')
-  //   cy.contains('Machine Intelligence quiz 1')
-  //   // Sign out as setup for next test
-  //   cy.get('app-header > .mat-toolbar > :nth-child(4) > .mat-focus-indicator > .mat-button-wrapper').click()
-  // })
+  it('User completes and submits a quiz and recieves 0 marks.', () => {
+    // User clicks quiz button.
+    cy.get(':nth-child(1) > .mat-focus-indicator').click()
+    // User selects an answer to question 1.
+    cy.get('#mat-radio-65 > .mat-radio-label > .mat-radio-container > .mat-radio-outer-circle').click()
+    // User submits quiz.
+    cy.get('.button-container > .ng-star-inserted').click()
+    // Confirm quiz results page is displayed showing students score.
+    cy.url().should('eq', 'http://localhost:4200/Quiz/1/MI/5')
+    cy.contains('Post Lecture Quiz Results')
+    cy.contains('0 out of 4')
+    // User clicks exit button.
+    cy.get('.button-container > .mat-focus-indicator').click()
+    // Confirm quiz selection page for MI module is displayed.
+    cy.url().should('eq', 'http://localhost:4200/QuizSelection/1/MI')
+    cy.contains('Machine Intelligence quiz 1')
+    // Test that the student can only attempt the quiz once by clicking the quiz button and seeing the popup message.
+    cy.get(':nth-child(1) > .mat-focus-indicator').click()
+    cy.get('#cdk-overlay-3').should('be.visible')
+    // Setup for next test by confirming that the back to module button works and then sign out.
+    cy.get('[aria-label="Back to modules button"]').click()
+    cy.url().should('eq', 'http://localhost:4200/ModuleSelection/1')
+    // Sign out.
+    cy.get('app-header > .mat-toolbar > :nth-child(4) > .mat-focus-indicator > .mat-button-wrapper').click()
+  })
 })
 
-// End-to-end testing of functionality available to tutors.
+
+// End-to-end testing of functionality available to tutors accessing the SDLC module.
 describe('The tutor should be able to access the SDLC module and view results for the quiz they select.', () => {
   it('User navigates to the SDLC boards.', () => {
-    cy.get('app-header > .mat-toolbar > :nth-child(4) > .mat-focus-indicator > .mat-button-wrapper').click()
     // Tutor logs in.
-    cy.get('#mat-input-4').type('tutor@gmail.com')
-    cy.get('#mat-input-5').type('Password')
+    cy.get('#mat-input-2').type('tutor@gmail.com')
+    cy.get('#mat-input-3').type('Password')
     // Login button clicked.
     cy.get('.center > .mat-focus-indicator').click()
     // Confirm that the system recognises that a tutor is signed in.
@@ -204,12 +209,18 @@ describe('The tutor should be able to access the SDLC module and view results fo
     // Confirm user see's boards for the SDLC module.
     cy.url().should('eq', 'http://localhost:4200/BoardSelection/0/SDLC')
   })
-  it('User navigates to the quiz selection for SDLC page by selecting the quiz board.', () => {
+  it('User can navigate to the quiz selection page for SDLC module by selecting the quiz board, and back to the board selection page using the back to boards button.', () => {
     // Student clicks the quiz board button.
     cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
     // Confirm quiz selection page is displayed showing SDLC quiz's.
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/0/SDLC')
     cy.contains('Software Development Life Cycle quiz 1')
+     // Student clicks back to boards button.
+     cy.get('[aria-label="Back to boards button"] > .mat-button-wrapper').click()
+     // Confirm SDLC board selection page is displayed.
+     cy.url().should('eq', 'http://localhost:4200/BoardSelection/0/SDLC')
+     // Setup for next test
+     cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
   })
   it('User selects a quiz to view results and exits the quiz once it is displayed.', () => {
     // User clicks quiz button.
@@ -224,32 +235,33 @@ describe('The tutor should be able to access the SDLC module and view results fo
     // Confirm quiz selection page is displayed showing SLDC quiz's.
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/0/SDLC')
     cy.contains('Software Development Life Cycle quiz 1')
+    // Setup for next test by confirming that the back to module button works and then sign out.
+    cy.get('[aria-label="Back to modules button"]').click()
+    cy.url().should('eq', 'http://localhost:4200/ModuleSelection/0')
   })
 })
 
+
+// End-to-end testing of functionality available to tutors accessing the MI module.
 describe('The tutor should be able to access the MI module and view results for the quiz they select.', () => {
   it('User navigates to the MI boards.', () => {
-    cy.get('app-header > .mat-toolbar > :nth-child(4) > .mat-focus-indicator > .mat-button-wrapper').click()
-    // Tutor logs in.
-    cy.get('#mat-input-6').type('tutor@gmail.com')
-    cy.get('#mat-input-7').type('Password')
-    // Login button clicked.
-    cy.get('.center > .mat-focus-indicator').click()
-
-
-
-
     // Student clicks the button for the MI module.
     cy.get('[style="left: calc((50% - 0.5px + 1px) * 1); width: calc((50% - 0.5px) * 1 + 0px); margin-top: 0px; padding-top: calc((18.75% - 0.5px) * 1 + 0px);"] > .mat-grid-tile-content > .module-container > .mat-focus-indicator').click()
     // Confirm user see's boards for the MI module.
     cy.url().should('eq', 'http://localhost:4200/BoardSelection/0/MI')
   })
-  it('User navigates to the quiz selection for MI page by selecting the quiz board.', () => {
+  it('User can navigate to the quiz selection page for MI module by selecting the quiz board, and back to the board selection page using the back to boards button.', () => {
     // Student clicks the quiz board button.
     cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
     // Confirm quiz selection page is displayed showing MI quiz's.
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/0/MI')
     cy.contains('Machine Intelligence quiz 1')
+     // Student clicks back to boards button.
+     cy.get('[aria-label="Back to boards button"] > .mat-button-wrapper').click()
+     // Confirm MI board selection page is displayed.
+     cy.url().should('eq', 'http://localhost:4200/BoardSelection/0/MI')
+     // Setup for next test
+     cy.get('[style="left: 0px; width: calc((20% - 0.8px) * 1 + 0px); margin-top: 0px; padding-top: calc((20% - 0.8px) * 1 + 0px);"] > .mat-grid-tile-content > .button-container > .mat-focus-indicator').click()
   })
   it('User selects a quiz to view results and exits the quiz once it is displayed.', () => {
     // User clicks quiz button.
@@ -264,5 +276,10 @@ describe('The tutor should be able to access the MI module and view results for 
     // Confirm quiz selection page is displayed showing MI quiz's.
     cy.url().should('eq', 'http://localhost:4200/QuizSelection/0/MI')
     cy.contains('Machine Intelligence quiz 1')
+    // Setup for next test by confirming that the back to module button works and then sign out.
+    cy.get('[aria-label="Back to modules button"]').click()
+    cy.url().should('eq', 'http://localhost:4200/ModuleSelection/0')
+    // Sign out.
+    cy.get('app-header > .mat-toolbar > :nth-child(4) > .mat-focus-indicator > .mat-button-wrapper').click()
   })
 })

@@ -107,4 +107,10 @@ export class MockModuleService implements AbstractModuleService {
     }
     return false;
   }
+
+  // Reset current module
+  public resetModule(): void {
+      this.sdlc = false;
+      this.mi = false;
+  }
 }

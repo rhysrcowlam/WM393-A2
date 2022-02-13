@@ -11,7 +11,7 @@ import { AbstractModuleService } from '../module-selection/modules.abstract.serv
 export class HeaderComponent implements OnInit {
   constructor(
     public loginService: AbstractLoginService,
-    public modueService: AbstractModuleService,
+    public moduleService: AbstractModuleService,
     public router: Router,
   ) { }
 
@@ -22,10 +22,12 @@ export class HeaderComponent implements OnInit {
     if (this.loginService.getLogInStatus()) {
       // If the user is a tutor navigate to the tutor view of the ModuleSelection page.
       if (this.loginService.userIsTutor()) {
+        this.moduleService.resetModule()
         this.router.navigate(['ModuleSelection/0']);
       }
       // If the user is a student navigate to the tutor view of the ModuleSelection page.
       else if (this.loginService.userIsStudent()) {
+        this.moduleService.resetModule()
         this.router.navigate(['ModuleSelection/1']);
       }
     }
@@ -36,21 +38,21 @@ export class HeaderComponent implements OnInit {
     if (this.loginService.getLogInStatus()) {
       if (this.loginService.userIsTutor()) {
         // If the current module is the SDLC module navigate to the tutor view of the SDLC BoardSelection page.
-        if (this.modueService.sdlcCurrentModule()) {
+        if (this.moduleService.sdlcCurrentModule()) {
           this.router.navigate(['BoardSelection/0/SDLC']);
         }
         // If the current module is the MI module navigate to the tutor view of the MI BoardSelection page.
-        else if (this.modueService.miCurrentModule()) {
+        else if (this.moduleService.miCurrentModule()) {
           this.router.navigate(['BoardSelection/0/MI']);
         }
       }
       // If the current module is the SDLC module navigate to the student view of the SDLC BoardSelection page.
       else if (this.loginService.userIsStudent()) {
-        if (this.modueService.sdlcCurrentModule()) {
+        if (this.moduleService.sdlcCurrentModule()) {
           this.router.navigate(['BoardSelection/1/SDLC']);
         }
         // If the current module is the MI module navigate to the student view of the MI BoardSelection page.
-        else if (this.modueService.miCurrentModule()) {
+        else if (this.moduleService.miCurrentModule()) {
           this.router.navigate(['BoardSelection/1/MI']);
         }
       }
@@ -60,6 +62,7 @@ export class HeaderComponent implements OnInit {
   // Navigate back to the login page and set the Logged in flag to false.
   public signOut(): void {
     this.loginService.signOutUser();
+    this.moduleService.resetModule();
     this.router.navigate(['HomePage'])
   }
 }
