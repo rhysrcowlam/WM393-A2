@@ -9,6 +9,7 @@ import { ModuleToQuizs, Quizs } from './quiz-selection.interface';
 })
 export class MockQuizSelectionService implements AbstractQuizSelectionService {
 
+    // Array of quiz objects.
     private mockQuizs: Quizs[] = [
         {
             id: "1",
@@ -92,6 +93,7 @@ export class MockQuizSelectionService implements AbstractQuizSelectionService {
         }
     ];
 
+    // Array of module objects with assigned quizs.
     private moduleData: ModuleToQuizs[] = [
         {
             id: "SDLC",
@@ -113,10 +115,12 @@ export class MockQuizSelectionService implements AbstractQuizSelectionService {
         }
     ]
 
+    // Return the full list of quiz objects.
     public getQuizs(id: string): Observable<Quizs[]> {
         return of(this.mockQuizs);
     }
 
+    // Return one object from the ModuleToQuizs array.
     public getModuleQuizList(id: string): Observable<ModuleToQuizs | undefined> {
         const module = this.moduleData.find(x => x.id == id);
         if (module) {
@@ -125,6 +129,7 @@ export class MockQuizSelectionService implements AbstractQuizSelectionService {
         return of(undefined);
     }
 
+    // Return one object from the array of quizs.
     public getModuleQuizs(id: string): Observable<Quizs | undefined> {
         const quiz = this.mockQuizs.find(x => x.id == id);
         if (quiz) {

@@ -36,7 +36,9 @@ export class QuizStatisticsComponent implements OnInit {
     public router: Router
   ) {  }
 
+  // Runs on component initialisation.
   ngOnInit(): void {
+    // Get the value of the userid url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const user = paramMap.get('userid');
       if (user) {
@@ -44,6 +46,7 @@ export class QuizStatisticsComponent implements OnInit {
       }
     });
 
+    // Get the value of the module url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const title = paramMap.get('module');
       if (title) {
@@ -51,6 +54,7 @@ export class QuizStatisticsComponent implements OnInit {
       }
     });
 
+    // Get the value of the quizid url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const quiz = paramMap.get('quizid');
       if (quiz) {
@@ -60,6 +64,7 @@ export class QuizStatisticsComponent implements OnInit {
 
     let results: QuizResults[] = [];
 
+    // Get all of the quiz results that match the provided quiz id.
     this.results.getQuizResults(this.quiz)
       .subscribe(resultList => {
         if (resultList) {
@@ -67,6 +72,7 @@ export class QuizStatisticsComponent implements OnInit {
         }
       })
 
+    // For each result returned add to a category based on overall score.
     results.forEach(result => {
       if (result.quizId == this.quiz && result.moduleId == this.module) {
         if (result.studentsScore == 0) {
@@ -87,6 +93,7 @@ export class QuizStatisticsComponent implements OnInit {
       }
     })
 
+    // Create the data to populate the graph using each score category in a separate data object.
     this.data = [
       {
         name: "0 out of 4",
@@ -136,6 +143,7 @@ export class QuizStatisticsComponent implements OnInit {
     ]
   }
 
+  // Navigate to the QuizSelection page when the user clicks the Exit button parsing the user id and module id in the url.
   public handleBackNavigation() {
     this.router.navigate(['QuizSelection/', this.user, this.module]);
   }

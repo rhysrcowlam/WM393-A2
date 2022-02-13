@@ -12,6 +12,7 @@ export class MockLoginService implements AbstractLoginService {
   public isStudent: boolean = false;
   public isTutor: boolean = false;
 
+  // Array of user objects.
   private mockUsers: Login[] = [
     {
       id: '0',
@@ -40,6 +41,7 @@ export class MockLoginService implements AbstractLoginService {
 
   ];
 
+  // Look through the users array for an object with an email that matches the email provided and return the object.
   public getLoginCredentials(email: string): Observable<Login | undefined> {
     const user = this.mockUsers.find(x => x.email == email);
     if (user) {
@@ -48,9 +50,11 @@ export class MockLoginService implements AbstractLoginService {
     return of(undefined);
   }
 
+  // Check the users array for an object with an email and password that matches the email and password provided.
   public authenticateUser(email: string, password: string): boolean {
     const user = this.mockUsers.find(x => x.email == email && x.password == password);
     if (user) {
+      // Set login status to true.
       this.loggedIn = true;
 
       if (user.role == 0) {
@@ -66,10 +70,12 @@ export class MockLoginService implements AbstractLoginService {
     }
   }
 
+  // Get the current login status
   public getLogInStatus(): boolean {
     return this.loggedIn;
   }
 
+  // Check if the current user a student.
   public userIsStudent(): boolean {
     if (this.isStudent) {
       return true;
@@ -77,6 +83,7 @@ export class MockLoginService implements AbstractLoginService {
     return false;
   }
 
+  // Check if the current user a tutor.
   public userIsTutor(): boolean {
     if (this.isTutor) {
       return true;
@@ -84,6 +91,7 @@ export class MockLoginService implements AbstractLoginService {
     return false;
   }
 
+  // Look through the users array for an object with an id that matches the id provided and return the object.
   public getCurrentUser(id: string): Observable<Login | undefined> {
     const currentUser = this.mockUsers.find(x => x.id == id);
     if (currentUser) {
@@ -92,6 +100,7 @@ export class MockLoginService implements AbstractLoginService {
     return of(undefined);
   }
 
+  // Handle the sign out function setting all flags to false.
   public signOutUser(): void {
     this.loggedIn = false;
     this.isStudent = false;

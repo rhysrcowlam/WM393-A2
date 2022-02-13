@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+// Imports all of the Angular material modules used in the project.
 @NgModule({
   imports: [
     MatToolbarModule,

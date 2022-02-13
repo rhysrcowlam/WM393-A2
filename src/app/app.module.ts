@@ -28,7 +28,7 @@ import { AbstractQuizSelectionService } from './quiz-selection/quiz-selection.ab
 import { MockQuizSelectionService } from './quiz-selection/quiz-selection.mock.service';
 import { BarChartVerticalComponent } from './quiz-statistics/bar-chart-vertical/bar-chart-vertical/bar-chart-vertical.component';
 
-
+// Imports all of the components and services used within the project.
 @NgModule({
   declarations: [
     AppComponent,

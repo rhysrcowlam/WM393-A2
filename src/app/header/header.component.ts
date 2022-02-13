@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
     public router: Router,
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   public navigateToModules(): void {
     console.log(this.loginService.getLogInStatus())
@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
     console.log(this.loginService.userIsStudent())
 
 
+    // If a user is logged in navigate to the ModuleSelection page.
     if (this.loginService.getLogInStatus()) {
       if (this.loginService.userIsTutor()) {
         this.router.navigate(['ModuleSelection/0']);
@@ -32,12 +33,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  // If a user is logged in navigate to the BoardSelection page.
   public navigateToBoards(): void {
     if (this.loginService.getLogInStatus()) {
       this.router.navigate(['BoardSelection']);
     }
   }
 
+  // Navigate back to the login page and set the Logged in flag to false.
   public signOut(): void {
     this.loginService.signOutUser();
     this.router.navigate(['HomePage'])

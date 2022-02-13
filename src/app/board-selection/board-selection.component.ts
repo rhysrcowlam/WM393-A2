@@ -23,7 +23,9 @@ export class BoardSelectionComponent implements OnInit {
     public router: Router
   ) { }
 
+  // Runs on component initialisation.
   ngOnInit(): void {
+    // Get the value of the userid url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const user = paramMap.get('userid');
       if (user) {
@@ -31,6 +33,7 @@ export class BoardSelectionComponent implements OnInit {
       }
     });
 
+    // Get the value of the module url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const title = paramMap.get('module');
       if (title) {
@@ -40,6 +43,7 @@ export class BoardSelectionComponent implements OnInit {
 
     let moduleBoards: string[] = [];
 
+    // Retrieve the id of the boards assigned to the current module.
     this.moduleService.getModule(this.moduleId)
       .subscribe(module => {
         if (module) {
@@ -47,6 +51,7 @@ export class BoardSelectionComponent implements OnInit {
         }
       });
 
+    // For each Id in moduleBoards, return the board object with a matching Id.
     moduleBoards.forEach(board =>
       this.moduleService.getModuleBoard(board)
         .subscribe(board => {
@@ -57,6 +62,7 @@ export class BoardSelectionComponent implements OnInit {
     );
   }
 
+  // Navigate to the QuizSelection page when the user clicks the quiz button parsing the user id and module id in the url.
   public handleNavigation(module: string, boardName: string) {
     if (boardName == "Quiz") {
       this.router.navigate(['QuizSelection/', this.user, module]);

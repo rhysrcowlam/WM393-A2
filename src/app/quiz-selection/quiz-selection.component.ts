@@ -24,7 +24,9 @@ export class QuizSelectionComponent implements OnInit {
     public router: Router
   ) { }
 
+  // Runs on component initialisation.
   ngOnInit(): void {
+    // Get the value of the userid url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const user = paramMap.get('userid');
       if (user) {
@@ -32,6 +34,7 @@ export class QuizSelectionComponent implements OnInit {
       }
     });
 
+    // Get the value of the module url parameter.
     this.route.paramMap.subscribe(paramMap => {
       const title = paramMap.get('module');
       if (title) {
@@ -41,6 +44,7 @@ export class QuizSelectionComponent implements OnInit {
 
     let moduleQuizs: string[] = [];
 
+    // Get the quiz id's assinged to the module selected.
     this.quizService.getModuleQuizList(this.module)
       .subscribe(moduleQuiz => {
         if (moduleQuiz) {
@@ -48,6 +52,7 @@ export class QuizSelectionComponent implements OnInit {
         }
       });
 
+    // For each quiz id, return the quiz object with a matching id.
     moduleQuizs.forEach(quiz =>
       this.quizService.getModuleQuizs(quiz)
         .subscribe(quizs => {
@@ -58,9 +63,11 @@ export class QuizSelectionComponent implements OnInit {
     );
   }
 
+  // Handle navigation from clicking a quiz button.
   public handleNavigation(id: string) {
     let userType: eRoles = 0;
 
+    // Get the current user type.
     this.loginService.getCurrentUser(this.user)
       .subscribe(currentUser => {
         if (currentUser) {
@@ -68,9 +75,11 @@ export class QuizSelectionComponent implements OnInit {
         }
       });
     
+    // If the user is a tutor, navigate to the quiz statistics page parsing the user id, module id, and quiz id in the url.
     if (userType == 0) {
       this.router.navigate(['QuizStatistics/', this.user, this.module, id])
     }
+    // If the user is a student, navigate to the quiz statistics page parsing the user id, module id, and quiz id in the url.
     else if (userType == 1) {
       this.router.navigate(['Quiz/', this.user, this.module, id])
     }

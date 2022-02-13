@@ -16,6 +16,7 @@ export class DisplayQuestionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // Get the index of the selected radio button and emit that index value.
   public changeHandler(answer: string) {
     const index = this.question.answers.findIndex(x => answer == x)
     if (index > -1) {

@@ -17,6 +17,7 @@ export class QuizResultsComponent {
     public loginService: AbstractLoginService,
   ) { }
 
+  // Get the index of the students selected answer and return the value of that at that index in the answers array.
   public displayAnswers() {
     const id = this.studentsAnswers.get(this.question.id)
     if (id !== undefined && id > -1) {

@@ -18,6 +18,7 @@ import { ScaleBand } from 'd3';
 })
 export class BarChartVerticalComponent implements AfterViewInit, OnChanges {
 
+  // Recieve the necessary data required to populate the graph.
   @Input() data!: { name: string, series: { name: string, value: number }[] }[];
   @Input() height = 400;
   @Input() margin = { top: 10, left: 50, right: 10, bottom: 20 };
@@ -51,6 +52,7 @@ export class BarChartVerticalComponent implements AfterViewInit, OnChanges {
     this.isRendered = true;
   }
 
+  // Create the graph element.
   private createSVG(): void {
     this.svg = d3.select(this.svgContainerRef.nativeElement)
       .append('svg')
@@ -62,6 +64,7 @@ export class BarChartVerticalComponent implements AfterViewInit, OnChanges {
       .attr('class', 'bar-chart-vertical');
   }
 
+  // Check that the data parsed in is valid.
   private isDataValid(): boolean {
     return this.data && this.data.length > 0;
   }
@@ -76,6 +79,7 @@ export class BarChartVerticalComponent implements AfterViewInit, OnChanges {
     return scale;
   }
 
+  // Draw the bar chart.
   private createChart(): void {
     if (!this.isRendered) {
       this.createSVG();

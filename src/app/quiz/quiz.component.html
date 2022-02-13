@@ -8,6 +8,7 @@
     <div *ngIf="!displayResults">
         <h1 class="header">Post Lecture Quiz {{quiz}}</h1>
         <div *ngFor="let question of quizQuestions">
+            <!-- Retrieve the index value emitted by the display-question component and parse it into the handleAnswer function. -->
             <app-display-question [question]="question"
                 (selectionChangeEvent)="handleAnswer($event, question.id, question.correctAnswer)">
             </app-display-question>
@@ -33,7 +34,7 @@
         <button mat-flat-button aria-label="Exit Quiz" class="button-style" (click)="handleBackNavigation()">
             Exit Quiz
         </button>
-        
+
         <button mat-flat-button aria-label="Submit" *ngIf="!displayResults" class=" button-style"
             (click)="submitQuiz()">
             Submit

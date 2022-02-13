@@ -33,7 +33,8 @@ A functional prototpye of the WMG Teaching Support System. This implementation f
 
 ### Prerequisites
 
-Preferred Web Broswer (Chrome recommmended)
+ * Preferred Web Broswer (Chrome recommmended)
+ * Nodejs
 
 ### Setup (Windows 10)
 
