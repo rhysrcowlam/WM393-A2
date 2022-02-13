@@ -1,27 +1,89 @@
-# MyApp
+# WMGTSS Quiz Board Implementation
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+A functional prototpye of the WMG Teaching Support System. This implementation focuses of the Quiz board function within the WMG system.
 
-## Development server
+## About the Project
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![](Images/Login_page.PNG)
 
-## Code scaffolding
+![](Images/ModuleSelection.PNG)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![](Images/BoardSelection.PNG)
 
-## Build
+![](Images/QuizSelection.PNG)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![](Images/QuizForm.PNG)
 
-## Running unit tests
+![](Images/ResultsStudent.PNG)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![](Images/ResultsTutor.PNG)
 
-## Running end-to-end tests
+## Built With
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+ * Angular
+ * Angular Material UI
+ * TypeScript
+ * RxJS
+ * d3
+ * Karma
+ * Jasmine
+ * Cypress
 
-## Further help
+## Getting Started
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Prerequisites
+
+Preferred Web Broswer (Chrome recommmended)
+
+### Setup (Windows 10)
+
+The following steps run the application in on a dev server.
+ 
+ * Download repository (Clone repo if you are unable to download)
+ * Open a new command line window
+ * Navigate to the repository's directory
+   * Example: C:\Users\username\WM393-A2
+ * Run the following command: npm install
+ * Run the following command: ng serve
+
+### Cypress Testing
+
+The following steps are for running the Cypress test script for this application.
+
+If not done so already:
+
+ * Download repository (Clone repo if you are unable to download)
+ * Open a new command line window
+ * Navigate to the repository's directory
+   * Example: C:\Users\username\WM393-A2
+ * Run the following command: npm install
+
+For running Cypress after an ng serve:
+
+ * Navigate to the repository's directory
+   * Example: C:\Users\username\WM393-A2
+ * Run the following command: ng run my-app:cypress-open
+ * In the Cypress window that opens click the spec.ts file to run the test script.
+
+## User Accounts
+
+### Tutor
+
+Email: tutor@gmail.com
+Password: Password
+
+### Students
+#### Student 1
+
+Email: student1@gmail.com
+Password: Password
+
+#### Student 2
+
+Email: student2@gmail.com
+Password: Password
+
+#### Student 3
+
+Email: student3@gmail.com
+Password: Password
